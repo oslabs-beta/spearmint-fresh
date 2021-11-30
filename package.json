@@ -1,8 +1,8 @@
 {
-  "name": "ProjectQL",
+  "name": "spearmint-fresh",
   "version": "1.0.0",
   "description": "",
-  "main": "main.tsx",
+  "main": "public/electron.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
