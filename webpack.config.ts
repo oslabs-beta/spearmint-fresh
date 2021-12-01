@@ -3,7 +3,7 @@ import webpack from "webpack";
 
 const config: webpack.Configuration = {
   mode: 'development',
-  entry: "./src/index.tsx",
+  entry: "./src/index.js",
   devtool: 'inline-source-map',
   target: 'electron-renderer',
   module: {

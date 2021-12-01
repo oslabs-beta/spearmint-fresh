@@ -1,11 +1,11 @@
 {
-  "name": "ProjectQL",
+  "name": "spearmint-fresh",
   "version": "1.0.0",
   "description": "",
-  "main": "main.tsx",
+  "main": "public/electron.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
+    "start": "concurrently \"electron .\" \"nodemon server/server.js\"",
     "watch": "webpack --config webpack.config.ts --watch"
   },
   "keywords": [],
@@ -16,8 +16,11 @@
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
+    "concurrently": "^6.4.0",
+    "cookie-parser": "^1.4.6",
     "css-loader": "^6.2.0",
     "electron": "^13.1.9",
+    "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "sass": "^1.37.5",
@@ -31,6 +34,7 @@
     "@babel/preset-typescript": "^7.15.0",
     "@types/webpack-dev-server": "^3.11.5",
     "electron-reload": "^2.0.0-alpha.1",
+    "nodemon": "^2.0.15",
     "ts-node": "^10.2.0",
     "typescript": "^4.3.5",
     "webpack-dev-server": "^3.11.2"
