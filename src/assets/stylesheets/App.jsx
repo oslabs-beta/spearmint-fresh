@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import './style/app.scss';
+import styles from './App.module.scss';
+// import './style/app.scss';
 
 
 const App = () => (
@@ -10,7 +11,6 @@ const App = () => (
  </div>
 
 );
-
 
 
 export default App;
