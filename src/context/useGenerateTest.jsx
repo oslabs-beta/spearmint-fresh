@@ -1,5 +1,7 @@
 /* eslint-disable */
 const { ipcRenderer } = require('electron');
+// used to format testFileCode which is a string 
+// --> makes sure code is readable 
 const beautify = require('js-beautify');
 
 function useGenerateTest(test, projectFilePath) {
