@@ -85,6 +85,7 @@ const OpenFolder = () => {
   };
 
   return (
+    // <h1> hello world </h1>
     <span>
       {!isProjectLoaded ? (
         <button id={styles.openBtn} onClick={handleOpenFolder}>
