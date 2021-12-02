@@ -103,5 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-# build
-build/bundle.js
+# Custom ignore files 
+/build
+.DS_Store

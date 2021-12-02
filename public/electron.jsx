@@ -7,9 +7,9 @@ function createWindow(params) {
         heigh:800,
         backgroundColor: "white",
         webPreferences:{
-            nodeIntegration: false,
+            nodeIntegration: true, // changed to true from legacy to resolve an issue with OpenFolderButton
             worldSafeExecuteJavaScript: true,
-            contextIsolation: true
+            contextIsolation: false // changed to false from legacy to resolve an issue with OpenFolderButton
         }
     })
     app.loadFile(path.join(__dirname, 'index.html')); // unsure why we need the path.join, but index.html not found without it
