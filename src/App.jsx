@@ -21,49 +21,49 @@ const App = () => {
       </div>
     );
   }
-  // return (
-  // /**
-  //      * Wrap the components that we want to share the unique states with.
-  //      * You can only provide one value to a Provider.
-  //      *  - In order to avoid creating separate Contexts, wrap multiples in an array (ex: testCase and dispatchToTestCase).
-  //      *
-  //      *
-  //      * NOTE: This concept is similar to Redux and how it provides the store to your top-level component and all of its children.
-  //      * We just have to create separate providers for each reducer because we don’t have a global store ala Redux.
-  //      *
-  //      *
-  //      * We access the value that we gave to the Provider through useContext
-  //      */
-  //   <div
-  //     id={
-  //         global.isProjectLoaded === 'about'
-  //           ? ''
-  //           : global.isFileDirectoryOpen
-  //             ? global.isRightPanelOpen
-  //               ? styles.fileDirectoryOpenRightPanelOpen
-  //               : styles.fileDirectoryOpenRightPanelClosed
-  //             : global.isRightPanelOpen
-  //               ? styles.fileDirectoryClosedRightPanelOpen
-  //               : styles.fileDirectoryClosedRightPanelClosed
-  //       }
-  //   >
-  //     <GlobalContext.Provider value={[global, dispatchToGlobal]}>
-  //       {global.isProjectLoaded === 'about' ? (
-  //         <>
-  //           <NavBar inAboutPage />
-  //           <About dispatch={dispatchToGlobal} />
-  //           {' '}
-  //         </>
-  //       ) : (
-  //         <>
-  //           <NavBar inAboutPage={false} />
-  //           <LeftPanel />
-  //         </>
-  //       )}
-  //       {global.isRightPanelOpen ? <RightPanel /> : ''}
-  //     </GlobalContext.Provider>
-  //   </div>
-  // );
+  return (
+  /**
+       * Wrap the components that we want to share the unique states with.
+       * You can only provide one value to a Provider.
+       *  - In order to avoid creating separate Contexts, wrap multiples in an array (ex: testCase and dispatchToTestCase).
+       *
+       *
+       * NOTE: This concept is similar to Redux and how it provides the store to your top-level component and all of its children.
+       * We just have to create separate providers for each reducer because we don’t have a global store ala Redux.
+       *
+       *
+       * We access the value that we gave to the Provider through useContext
+       */
+    <div
+      id={
+          global.isProjectLoaded === 'about'
+            ? ''
+            : global.isFileDirectoryOpen
+              ? global.isRightPanelOpen
+                ? styles.fileDirectoryOpenRightPanelOpen
+                : styles.fileDirectoryOpenRightPanelClosed
+              : global.isRightPanelOpen
+                ? styles.fileDirectoryClosedRightPanelOpen
+                : styles.fileDirectoryClosedRightPanelClosed
+        }
+    >
+      <GlobalContext.Provider value={[global, dispatchToGlobal]}>
+        {global.isProjectLoaded === 'about' ? (
+          <>
+            <NavBar inAboutPage />
+            <About dispatch={dispatchToGlobal} />
+            {' '}
+          </>
+        ) : (
+          <>
+            <NavBar inAboutPage={false} />
+            <LeftPanel />
+          </>
+        )}
+        {global.isRightPanelOpen ? <RightPanel /> : ''}
+      </GlobalContext.Provider>
+    </div>
+  );
 };
 
 export default App;
