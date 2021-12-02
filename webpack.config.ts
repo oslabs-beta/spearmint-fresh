@@ -32,7 +32,11 @@ const config: webpack.Configuration = {
           // Compiles Sass to CSS
           'sass-loader',
         ],
-      }
+      }, 
+      {
+       test: /\.png/,
+       type: 'asset/resource'
+     }
     ],
   },
   resolve: {
