@@ -10,7 +10,7 @@ const testStateSchema = new Schema({
   // Save name of test as user input
   testName: { type: String, require: true },
   // Save corresponding type of test
-  testType: { type: String, require: true },
+  testType: { type: Boolean, require: true },
   // Save test state object
   testState: { type: Object, require: true },
 });
