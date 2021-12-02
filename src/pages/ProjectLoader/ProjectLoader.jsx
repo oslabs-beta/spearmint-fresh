@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styles from './ProjectLoader.module.scss';
 import { GlobalContext } from '../../context/reducers/globalReducer';
-// import OpenFolder from '../../components/OpenFolder/OpenFolderButton';
+import OpenFolder from '../../components/OpenFolder/OpenFolderButton.jsx';
 import { Button, TextField } from '@material-ui/core';
 
 const ProjectLoader = () => {
@@ -153,8 +153,7 @@ const ProjectLoader = () => {
               <br />
               <span className={styles.text}>Select your application</span>
               <br />
-              {/* <OpenFolder /> */}
-              <h1> HELLO WORLD </h1>
+              <OpenFolder />
             </div>
           )}
         </div>
