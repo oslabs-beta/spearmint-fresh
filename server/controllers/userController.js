@@ -5,7 +5,6 @@ const userController = {};
 
 // Middleware to encrypt passwords using bcrypt
 userController.bcrypt = (req, res, next) => {
-  console.log('entering userController.bcrypt');
   // The cost factor determines how much time is needed to calculate a single bcrypt hash
   const saltRounds = 10;
   // Destructure password from request body
@@ -30,7 +29,7 @@ userController.signup = (req, res, next) => {
     // Callback to handle results of query
     (err, newUser) => {
       // If there is an error, invoke global error handler
-      if (err) return next('Account already exists');
+      if (err) return next(err);
       // Save user ID into response locals
       res.locals.userId = newUser._id;
       // Inovke next middleware
@@ -46,7 +45,7 @@ userController.login = (req, res, next) => {
     // If there is an error, invoke global error handler
     if (err) return next(err);
     // If there are no matching usernames, invoke global error handler
-    if (result.length === 0) return next('Incorrect username');
+    if (result.length === 0) return next('Incorrect username/password combo');
     // If there is a user with passed username, use the bcrypt.compare method to compare plaintext password with encrypted password
     bcrypt.compare(req.body.password, result[0].password, (err, match) => {
       // If an error occurs in the compare method, invoke global error handler
@@ -57,7 +56,7 @@ userController.login = (req, res, next) => {
         return next();
       }
       // If there is no match, invoke global error handler
-      return next('Incorrect password');
+      return next('Incorrect username/password combination');
     });
   });
 };
