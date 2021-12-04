@@ -40,6 +40,17 @@ router.post(
   }
 );
 
+// Set up route for get requests to /logout
+router.get(
+  '/logout',
+  // Session middleware to end any existing sessions
+  sessionController.endSession,
+  // Anonymous middleware to send back valid response
+  (req, res) => {
+    res.status(200).json('Logged Out Successfully');
+  }
+);
+
 // Set up route for post requests to /upload
 router.post(
   '/upload',
