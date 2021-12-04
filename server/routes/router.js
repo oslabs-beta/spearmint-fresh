@@ -53,4 +53,17 @@ router.post(
   }
 );
 
+// Set up route for get requests to /getTests with type passed as param
+router.get(
+  '/getTests/:testType',
+  // Session middleware to check if current user is signed in
+  sessionController.isLoggedIn,
+  // GetTests middleware to retrieve all saved tests from DB
+  testStateController.getTests,
+  // Anonymous middleware to send back valid response
+  (req, res) => {
+    res.status(200).json(res.locals.tests);
+  }
+);
+
 module.exports = router;

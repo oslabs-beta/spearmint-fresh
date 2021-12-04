@@ -25,6 +25,8 @@ testStateController.upload = (req, res, next) => {
 // Middleware too get all saved tests of current user and of selected type
 testStateController.getTests = (req, res, next) => {
   TestState.find({ userId: req.cookies.ssid, testType: req.params.testType }, (err, result) => {
+    console.log('ssid ===>',req.cookies.ssid); // --> "61a8ebfea74d60f1b349493d"
+    console.log('testType ===>',req.params.testType); // --> "4958"
     // If an error occurs, invoke error handler with err object
     if (err) return next(err);
     // Save resulting tests array to locals object
