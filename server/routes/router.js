@@ -4,7 +4,7 @@ const express = require('express');
 const userController = require('../controllers/userController');
 const cookieController = require('../controllers/cookieController');
 const sessionController = require('../controllers/sessionController');
-// const testStateController = require('../controllers/testStateController');
+const testStateController = require('../controllers/testStateController');
 // const githubController = require('../controllers/githubController');
 
 // Initialize an express router
@@ -40,6 +40,17 @@ router.post(
   }
 );
 
-
+// Set up route for post requests to /upload
+router.post(
+  '/upload',
+  // Session middleware to check if current user is signed in
+  sessionController.isLoggedIn,
+  // Upload middleware to save passed test object into DB
+  testStateController.upload,
+  // Anonymous middleware to send back valid response
+  (req, res) => {
+    res.status(200).json('Test Uploaded Successfully');
+  }
+);
 
 module.exports = router;
