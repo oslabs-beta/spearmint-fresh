@@ -1,9 +1,21 @@
 const { app, BrowserWindow, ipcMain, dialog} = require('electron');
 const path = require('path');
 const fs = require('fs');
+const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 // global bool to determine if in dev mode or not 
 const isDev = true; 
 
+if (isDev) {
+    app.whenReady().then(() => {
+        installExtension(REACT_DEVELOPER_TOOLS, {
+            loadExtensionOptions: {
+                allowFileAccess: true,
+            },
+        })
+            .then((name) => console.log(`Added Extension:  ${name}`))
+            .catch((err) => console.log('An error occurred: ', err));
+    });
+};
 
 
 
