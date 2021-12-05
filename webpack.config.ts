@@ -34,13 +34,13 @@ const config: webpack.Configuration = {
         ],
       }, 
       {
-       test: /\.png/,
+        test: [/\.png/, /\.svg/],
        type: 'asset/resource'
      }
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".jsx", ".ts", ".js"],
   },
   output: {
     path: path.resolve(__dirname, "build"),
