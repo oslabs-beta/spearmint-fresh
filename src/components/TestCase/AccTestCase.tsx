@@ -19,10 +19,10 @@ import { GlobalContext } from '../../context/reducers/globalReducer';
 
 import styles from './TestCase.module.scss';
 import AccTestMenu from '../TestMenu/AccTestMenu';
-// import AccTestTypes from '../AccTestComponent/AccTestTypes/AccTestTypes';
-// import PuppeteerUrl from '../AccTestComponent/PuppeteerUrl/PuppeteerUrl';
-// import SearchInput from '../SearchInput/SearchInput';
-// import DecribeRenderer from '../AccTestComponent/DescribeRenderer/DescribeRenderer';
+import AccTestTypes from '../AccTestComponent/AccTestTypes/AccTestTypes';
+import PuppeteerUrl from '../AccTestComponent/PuppeteerUrl/PuppeteerUrl';
+import SearchInput from '../SearchInput/SearchInput';
+import DecribeRenderer from '../AccTestComponent/DescribeRenderer/DescribeRenderer';
 
 const AccTestCase = () => {
   const [accTestCase, dispatchToAccTestCase] = useContext(AccTestCaseContext);
@@ -53,11 +53,10 @@ const AccTestCase = () => {
 
   return (
     <div id={styles.AccTestCase}>
-       <div id="head">
+      <div id="head">
         <AccTestMenu />
       </div>
-      
-      {/*
+
       <section id={styles.testCaseHeader}>
         <div id={styles.accTestDiv}>
           <AccTestTypes
@@ -71,16 +70,16 @@ const AccTestCase = () => {
           ) : (
             <div>
               <label htmlFor="fileImport">Import File From</label>
-                <div id={styles.labelInput} style={{ width: '80%' }}>
-                  <SearchInput
-                    options={Object.keys(filePathMap)}
-                    dispatch={dispatchToAccTestCase}
-                    action={updateFilePath}
-                    filePathMap={filePathMap}
-                  />
-                </div>
+              <div id={styles.labelInput} style={{ width: '80%' }}>
+                <SearchInput
+                  options={Object.keys(filePathMap)}
+                  dispatch={dispatchToAccTestCase}
+                  action={updateFilePath}
+                  filePathMap={filePathMap}
+                />
               </div>
-            )}
+            </div>
+          )}
         </div>
 
         <DragDropContext onDragEnd={onDragEnd}>
@@ -90,8 +89,8 @@ const AccTestCase = () => {
           >
             {(provided) => (
               <div
-              ref={provided.innerRef}
-              {...provided.droppableProps}
+                ref={provided.innerRef}
+                {...provided.droppableProps}
               >
                 <DecribeRenderer
                   dispatcher={dispatchToAccTestCase}
@@ -108,7 +107,7 @@ const AccTestCase = () => {
             )}
           </Droppable>
         </DragDropContext>
-      </section> */}
+      </section>
     </div>
   );
 };
