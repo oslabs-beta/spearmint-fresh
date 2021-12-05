@@ -47,7 +47,7 @@ import {
   accTestCaseState,
   accTestCaseReducer,
 } from '../../context/reducers/accTestCaseReducer';
-// import AccTestCase from '../../components/TestCase/AccTestCase';
+import AccTestCase from '../../components/TestCase/AccTestCase';
 
 import { GlobalContext } from '../../context/reducers/globalReducer';
 import { setTestCase, toggleModal } from '../../context/actions/globalActions';
@@ -147,33 +147,33 @@ const TestFile = () => {
             <ReduxTestCase />
           </ReduxTestCaseContext.Provider>
         </section>
-      )}
+      )} */}
 
-      {testCase === 'react' && (
+      {/* {testCase === 'react' && (
         <section>
           <MockDataContext.Provider value={[mockData, dispatchToMockData]}>
             <ReactTestCase />
           </MockDataContext.Provider>
         </section>
-      )}
+      )} */}
 
-      {testCase === 'endpoint' && (
+      {/* {testCase === 'endpoint' && (
         <section>
           <EndpointTestCaseContext.Provider value={[endpointTestCase, dispatchToEndpointTestCase]}>
             <EndpointTestCase />
           </EndpointTestCaseContext.Provider>
         </section>
-      )}
+      )} */}
 
-      {testCase === 'hooks' && (
+      {/* {testCase === 'hooks' && (
         <section>
           <HooksTestCaseContext.Provider value={[hooksTestCase, dispatchToHooksTestCase]}>
             <HooksTestCase />
           </HooksTestCaseContext.Provider>
         </section>
-      )}
+      )} */}
 
-      {testCase === 'puppeteer' && (
+      {/* {testCase === 'puppeteer' && (
         <section>
           <PuppeteerTestCaseContext.Provider
             value={[puppeteerTestCase, dispatchToPuppeteerTestCase]}
@@ -181,7 +181,7 @@ const TestFile = () => {
             <PuppeteerTestCase />
           </PuppeteerTestCaseContext.Provider>
         </section>
-      )}
+      )} */}
 
       {testCase === 'acc' && (
         <section>
@@ -189,8 +189,8 @@ const TestFile = () => {
             <AccTestCase />
           </AccTestCaseContext.Provider>
         </section>
-      )} */}
-      {/* {
+      )}
+       {/* {
         //incomplete functionality: this is wired to go to a react test for now
         testCase === 'vue' && (
           <section>
