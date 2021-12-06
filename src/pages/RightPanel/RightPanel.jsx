@@ -23,12 +23,12 @@ const RightPanel = () => {
       {/* Editor Tab */}
       <div hidden={tabIndex !== 0}>
         <h1>hello editor</h1>
-        {/* <EditorView /> */}
+        <EditorView />
       </div>
       {/* Browser Tab */}
       <div hidden={tabIndex !== 1}>
         <h1>hello browser</h1>
-        {/* <BrowserView /> */}
+        <BrowserView />
       </div>
       {/* Test Terminal */}
       <div hidden={tabIndex !== 2} >
