@@ -4,7 +4,7 @@ import { GlobalContext, globalState, globalReducer } from './context/reducers/gl
 import ProjectLoader from './pages/ProjectLoader/ProjectLoader.jsx';
 import NavBar from './components/NavBar/NavBar';
 import LeftPanel from './pages/LeftPanel/LeftPanel';
-// import RightPanel from './pages/RightPanel/RightPanel';
+import RightPanel from './pages/RightPanel/RightPanel';
 // import About from './pages/About/About';
 
 const App = () => {
@@ -60,7 +60,7 @@ const App = () => {
             <LeftPanel />
           </>
         )}
-        {/* {global.isRightPanelOpen ? <RightPanel /> : ''} */}
+        {global.isRightPanelOpen ? <RightPanel /> : ''}
       </GlobalContext.Provider>
     </div>
   );
