@@ -1,6 +1,4 @@
 import React, { useContext, useState } from 'react';
-import MonacoEditor from 'react-monaco-editor';
-import { editor } from 'monaco-editor';
 import { GlobalContext } from '../../context/reducers/globalReducer';
 import { updateFile } from '../../context/actions/globalActions';
 import styles from './EditorView.module.scss';
@@ -58,21 +56,7 @@ const Editor = () => {
   return (
     <div>
       <div onClick={() => setWasSaved('')}>
-        <MonacoEditor
-          height="80vh"
-          language="javascript"
-          theme="light-dark"
-          value={
-            file
-              ? extensionChecker[fileType]
-                ? '//Please select a valid file type'
-                : file
-              : '// Open a file or click preview to view your code.'
-          }
-          options={options}
-          editorDidMount={editorDidMount}
-          onChange={updatafile}
-        />
+        <h1>INSERT CODE EDITOR HERE</h1>
       </div>
       <div>
         <button type="button" id={styles.save} onClick={saveFile}>
