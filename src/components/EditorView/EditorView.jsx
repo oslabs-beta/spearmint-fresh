@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
 import { GlobalContext } from '../../context/reducers/globalReducer';
 import { updateFile } from '../../context/actions/globalActions';
 import styles from './EditorView.module.scss';
@@ -11,23 +13,23 @@ const Editor = () => {
   const [wasSaved, setWasSaved] = useState('');
   let editedText = '';
 
-  const options = {
-    selectOnLineNumbers: true,
-    wordWrap: 'wordWrapColumn',
-    wordWrapColumn: 90,
-    autoIndent: true,
-    colorDecorators: true,
-    wrappingIndent: 'indent',
-    automaticLayout: true,
-    codeLens: true,
-    // Added specific fontfamily and fontsize to address Windows curson misalignment issue
-    fontFamily: 'courier new',
-    fontSize: 12,
-  };
+  // const options = {
+  //   selectOnLineNumbers: true,
+  //   wordWrap: 'wordWrapColumn',
+  //   wordWrapColumn: 90,
+  //   autoIndent: true,
+  //   colorDecorators: true,
+  //   wrappingIndent: 'indent',
+  //   automaticLayout: true,
+  //   codeLens: true,
+  //   // Added specific fontfamily and fontsize to address Windows curson misalignment issue
+  //   fontFamily: 'courier new',
+  //   fontSize: 12,
+  // };
 
-  const editorDidMount = () => {
-    editor.setTheme('light-dark');
-  };
+  // const editorDidMount = () => {
+  //   editor.setTheme('light-dark');
+  // };
 
   const updatafile = (newValue, e) => {
     editedText = newValue;
@@ -56,7 +58,18 @@ const Editor = () => {
   return (
     <div>
       <div onClick={() => setWasSaved('')}>
-        <h1>INSERT CODE EDITOR HERE</h1>
+        <CodeMirror
+          value={
+            file
+              ? extensionChecker[fileType]
+                ? '//Please select a valid file type'
+                : file
+              : '// Open a file or click preview to view your code.'
+          }
+          height="80vh"
+          extensions={[javascript({ jsx: true })]}
+          onChange={updatafile}
+        />
       </div>
       <div>
         <button type="button" id={styles.save} onClick={saveFile}>
