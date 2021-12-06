@@ -36,7 +36,7 @@ const ProjectLoader = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    logout();
+    handleLogout();
     fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
@@ -77,7 +77,8 @@ const ProjectLoader = () => {
       .catch((err) => console.log(err));
   };
 
-  const logout = () => {
+  const handleLogout = () => {
+    setIsLoggedIn(false);
     fetch('http://localhost:3001/logout')
       .then((res) => res.json())
       .catch((err) => console.log(err));
@@ -148,12 +149,20 @@ const ProjectLoader = () => {
             renderLogin()
           ) : (
             <div className={styles.contentBox}>
-              <span className={styles.text}>Login Successful!</span>
+              <span className={styles.text}>Currently logged in as {username}!</span>
               <br />
               <br />
-              <span className={styles.text}>Select your application</span>
               <br />
-              <OpenFolder />
+              <span className={styles.text}>Select your application:</span>
+              <br />
+                <OpenFolder />
+                <br />
+                <br />
+                <br />
+                <Button variant='secondary' type='button' onClick={handleLogout} id={styles.loginBtn}>
+                LOGOUT
+                </Button>
+                <br />
             </div>
           )}
         </div>
