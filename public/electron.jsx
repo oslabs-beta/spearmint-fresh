@@ -100,11 +100,18 @@ ipcMain.on('OpenFolderButton.isDirectory', (e, filePath) => {
 ipcMain.on('OpenFolderButton.dialog', (e) => {
     const dialogOptions = {
         properties: ['openDirectory', 'createDirectory'],
-        filters: [
-            { name: 'Javascript Files', extensions: ['js', 'jsx'] },
-            { name: 'Style', extensions: ['css'] },
-            { name: 'Html', extensions: ['html'] },
-        ],
+
+// <-------------------------------------------------------------------------------------------------------------------------------------------->
+        // NOTE: The below filters prevented Linux users from being able to choose directories, and therefore from using the app almost entirely.
+        // In the interest of the most possible developers being able to use Spearmint, the filters have been removed.
+
+        // filters: [
+        //     { name: 'Javascript Files', extensions: ['js', 'jsx'] },
+        //     { name: 'Style', extensions: ['css'] },
+        //     { name: 'Html', extensions: ['html'] }
+        // ],
+// <-------------------------------------------------------------------------------------------------------------------------------------------->
+
         message: 'Please select your project folder',
     };
     e.returnValue = dialog.showOpenDialogSync(dialogOptions);
