@@ -1,5 +1,23 @@
-const {app, BrowserWindow} = require('electron');
+const { app, BrowserWindow, ipcMain, dialog} = require('electron');
 const path = require('path');
+const fs = require('fs');
+const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
+// global bool to determine if in dev mode or not 
+const isDev = true; 
+
+if (isDev) {
+    app.whenReady().then(() => {
+        installExtension(REACT_DEVELOPER_TOOLS, {
+            loadExtensionOptions: {
+                allowFileAccess: true,
+            },
+        })
+            .then((name) => console.log(`Added Extension:  ${name}`))
+            .catch((err) => console.log('An error occurred: ', err));
+    });
+};
+
+
 
 function createWindow(params) {
     const app = new BrowserWindow({
@@ -17,4 +35,87 @@ function createWindow(params) {
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, '../node_modules', '.bin', 'electron')
 })
+
+
+/*
+UNIVERSAL IPC CALLS
+(The following IPC calls are made from various components in the codebase)
+*/
+ipcMain.on('Universal.stat', (e, filePath) => {
+    e.returnValue = fs.statSync(filePath).isDirectory();
+});
+
+ipcMain.on('Universal.readDir', (e, projectFilePath) => {
+    e.returnValue = fs.readdirSync(projectFilePath, (err) => {
+        if (err) throw err;
+    });
+});
+
+ipcMain.on('Universal.readFile', (e, filePath) => {
+    e.returnValue = fs.readFileSync(filePath, 'utf8', (err) => {
+        if (err) throw err;
+    });
+});
+
+ipcMain.on('Universal.path', (e, folderPath, filePath) => {
+    e.returnValue = path.relative(folderPath, filePath, (err) => {
+        if (err) throw err;
+    });
+}); 
+
+/*
+  EXPORTFILEMODAL.JSX FILE FUNCTIONALITY
+  (check existence and create folder)
+*/
+ipcMain.on('ExportFileModal.exists', (e, fileOrFolderPath) => {
+    e.returnValue = fs.existsSync(fileOrFolderPath, (err) => {
+        if (err) throw err;
+    });
+});
+
+ipcMain.on('ExportFileModal.mkdir', (e, folderPath) => {
+    e.returnValue = fs.mkdirSync(folderPath, (err) => {
+        if (err) throw err;
+    });
+});
+
+ipcMain.on('ExportFileModal.fileCreate', (e, filePath, file) => {
+    e.returnValue = fs.writeFile(filePath, file, (err) => {
+        if (err) throw err;
+    });
+});
+
+ipcMain.on('ExportFileModal.readFile', (e, filePath) => {
+    e.returnValue = fs.readFileSync(filePath, 'utf8', (err) => {
+        if (err) throw err;
+    });
+});
+
+
+// OPENFOLDERBUTTON.JSX FILE FUNCTIONALITY
+ipcMain.on('OpenFolderButton.isDirectory', (e, filePath) => {
+    e.returnValue = fs.statSync(filePath).isDirectory();
+});
+
+ipcMain.on('OpenFolderButton.dialog', (e) => {
+    const dialogOptions = {
+        properties: ['openDirectory', 'createDirectory'],
+
+// <-------------------------------------------------------------------------------------------------------------------------------------------->
+        // NOTE: The below filters prevented Linux users from being able to choose directories, and therefore from using the app almost entirely.
+        // In the interest of the most possible developers being able to use Spearmint, the filters have been removed.
+
+        // filters: [
+        //     { name: 'Javascript Files', extensions: ['js', 'jsx'] },
+        //     { name: 'Style', extensions: ['css'] },
+        //     { name: 'Html', extensions: ['html'] }
+        // ],
+// <-------------------------------------------------------------------------------------------------------------------------------------------->
+
+        message: 'Please select your project folder',
+    };
+    e.returnValue = dialog.showOpenDialogSync(dialogOptions);
+});
+
+
 app.whenReady().then(createWindow);
