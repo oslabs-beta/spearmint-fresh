@@ -9,7 +9,7 @@ const ProjectLoader = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [message, setMessage] = useState('');
 
   const addHttps = (url) => {
@@ -37,7 +37,7 @@ const ProjectLoader = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     logout();
-    fetch('http://spearmint.us-west-1.elasticbeanstalk.com/login', {
+    fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const ProjectLoader = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    fetch('http://spearmint.us-west-1.elasticbeanstalk.com/signup', {
+    fetch('http://localhost:3001/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ const ProjectLoader = () => {
   };
 
   const logout = () => {
-    fetch('http://spearmint.us-west-1.elasticbeanstalk.com/logout')
+    fetch('http://localhost:3001/logout')
       .then((res) => res.json())
       .catch((err) => console.log(err));
   };
