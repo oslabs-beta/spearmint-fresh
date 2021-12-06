@@ -1,10 +1,12 @@
 const { app, BrowserWindow, ipcMain, dialog} = require('electron');
 const path = require('path');
 const fs = require('fs');
+const pty = require('node-pty');
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 // global bool to determine if in dev mode or not 
 const isDev = true; 
 
+// Add react dev tools to electron app 
 if (isDev) {
     app.whenReady().then(() => {
         installExtension(REACT_DEVELOPER_TOOLS, {
@@ -18,23 +20,52 @@ if (isDev) {
 };
 
 
-
+// setup electron window 
 function createWindow(params) {
     const app = new BrowserWindow({
-        width:1200,
+        width:1550,
         heigh:800,
         backgroundColor: "white",
         webPreferences:{
             nodeIntegration: true, // changed to true from legacy to resolve an issue with OpenFolderButton
             worldSafeExecuteJavaScript: true,
-            contextIsolation: false // changed to false from legacy to resolve an issue with OpenFolderButton
+            contextIsolation: false, // changed to false from legacy to resolve an issue with OpenFolderButton
+            webviewTag: true // Electron recommends against using webview, which is why it is disabled by default - could instead build with BrowserView or iframe
         }
     })
     app.loadFile(path.join(__dirname, 'index.html')); // unsure why we need the path.join, but index.html not found without it
+
+    // PTY PROCESS FOR IN APP TERMINAL
+    const ptyArgs = {
+        name: 'xterm-color',
+        cols: 80,
+        rows: 80,
+        cwd: process.env.HOME,
+        env: process.env,
+    };
+    console.log("process.env.HOME: ", process.env.HOME);
+
+    const ptyProcess = pty.spawn(shell, [], ptyArgs);
+    // with ptyProcess, we want to send incoming data to the channel terminal.incData
+    ptyProcess.on('data', (data) => {
+        mainWindow.webContents.send('terminal.incData', data);
+    });
+    // in the main process, at terminal.toTerm channel, when data is received,
+    // main process will write to ptyProcess
+    ipcMain.on('terminal.toTerm', (event, data) => {
+        ptyProcess.write(data);
+    });
+
 }
+
+// not 100% sure what this is doing 
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, '../node_modules', '.bin', 'electron')
-})
+}); 
+
+
+
+
 
 
 /*
