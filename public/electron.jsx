@@ -1,10 +1,17 @@
 const { app, BrowserWindow, ipcMain, dialog} = require('electron');
 const path = require('path');
 const fs = require('fs');
-const pty = require('node-pty');
+const np = require('node-pty');
+// replacement for node-pty
+// const cp = require('child_process'); 
+const os = require('os');
+// react developer tools for electron in dev mode 
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 // global bool to determine if in dev mode or not 
 const isDev = true; 
+
+//Dynamic variable to change terminal type based on os
+const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
 
 // Add react dev tools to electron app 
 if (isDev) {
@@ -35,6 +42,7 @@ function createWindow(params) {
     })
     app.loadFile(path.join(__dirname, 'index.html')); // unsure why we need the path.join, but index.html not found without it
 
+
     // PTY PROCESS FOR IN APP TERMINAL
     const ptyArgs = {
         name: 'xterm-color',
@@ -45,10 +53,10 @@ function createWindow(params) {
     };
     console.log("process.env.HOME: ", process.env.HOME);
 
-    const ptyProcess = pty.spawn(shell, [], ptyArgs);
+    const ptyProcess = np.spawn(shell, [], ptyArgs);
     // with ptyProcess, we want to send incoming data to the channel terminal.incData
     ptyProcess.on('data', (data) => {
-        mainWindow.webContents.send('terminal.incData', data);
+        app.webContents.send('terminal.incData', data);
     });
     // in the main process, at terminal.toTerm channel, when data is received,
     // main process will write to ptyProcess
@@ -56,16 +64,41 @@ function createWindow(params) {
         ptyProcess.write(data);
     });
 
+    //  CHILD PROCESS SOLUTION?? NOT WORKING 
+    // const ptyArgs = {
+    //     name: 'xterm-color',
+    //     cols: 80,
+    //     rows: 80,
+    //     cwd: process.env.HOME,
+    //     env: process.env,
+    // };
+    // console.log("process.env.HOME: ", process.env.HOME);
+
+    // // is shell the right argument? 
+    // const ptyProcess = cp.spawn(shell, [], ptyArgs);
+    // console.log('ptyProcess:'); 
+    // console.log(ptyProcess); 
+    // // with ptyProcess, we want to send incoming data to the channel terminal.incData
+    // ptyProcess.stdout.on('data', (data) => {
+    //     console.log('event was caught, this is inside ptyProcess.stdout.on data'); 
+    //     console.log('data:'); 
+    //     console.log(data); 
+    //     app.webContents.send('terminal.incData', data);
+    // });
+    // // in the main process, at terminal.toTerm channel, when data is received,
+    // // main process will write to ptyProcess
+    // ipcMain.on('terminal.toTerm', (data) => {
+    //     console.log('event was caught, this is inside ipcMain.on(terminal.toTerm)');
+    //     console.log('data:');
+    //     console.log(data);
+    //     ptyProcess.stdin.write(data);
+    // });
 }
 
 // not 100% sure what this is doing 
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, '../node_modules', '.bin', 'electron')
 }); 
-
-
-
-
 
 
 /*
