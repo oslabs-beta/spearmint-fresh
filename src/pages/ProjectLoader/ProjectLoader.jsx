@@ -9,7 +9,7 @@ const ProjectLoader = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [message, setMessage] = useState('');
 
   const addHttps = (url) => {
@@ -36,8 +36,12 @@ const ProjectLoader = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    logout();
-    fetch('http://spearmint.us-west-1.elasticbeanstalk.com/login', {
+    if (username.length < 4 || password.length < 4) {
+      setMessage('invalid username / password combo');
+      return;
+    }
+    handleLogout();
+    fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +64,11 @@ const ProjectLoader = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    fetch('http://spearmint.us-west-1.elasticbeanstalk.com/signup', {
+    if (username.length < 4 || password.length < 4) {
+      setMessage('invalid username / password combo');
+      return;
+    }
+    fetch('http://localhost:3001/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -77,8 +85,9 @@ const ProjectLoader = () => {
       .catch((err) => console.log(err));
   };
 
-  const logout = () => {
-    fetch('http://spearmint.us-west-1.elasticbeanstalk.com/logout')
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    fetch('http://localhost:3001/logout')
       .then((res) => res.json())
       .catch((err) => console.log(err));
   };
@@ -148,12 +157,20 @@ const ProjectLoader = () => {
             renderLogin()
           ) : (
             <div className={styles.contentBox}>
-              <span className={styles.text}>Login Successful!</span>
+              <span className={styles.text}>Currently logged in as {username}!</span>
               <br />
               <br />
-              <span className={styles.text}>Select your application</span>
               <br />
-              <OpenFolder />
+              <span className={styles.text}>Select your application:</span>
+              <br />
+                <OpenFolder />
+                <br />
+                <br />
+                <br />
+                <Button variant='secondary' type='button' onClick={handleLogout} id={styles.loginBtn}>
+                LOGOUT
+                </Button>
+                <br />
             </div>
           )}
         </div>
