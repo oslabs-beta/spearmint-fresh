@@ -2,8 +2,6 @@ const { app, BrowserWindow, ipcMain, dialog} = require('electron');
 const path = require('path');
 const fs = require('fs');
 const np = require('node-pty');
-// replacement for node-pty
-// const cp = require('child_process'); 
 const os = require('os');
 // react developer tools for electron in dev mode 
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
