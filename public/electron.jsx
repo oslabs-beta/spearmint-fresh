@@ -63,43 +63,12 @@ function createWindow(params) {
     ipcMain.on('terminal.toTerm', (event, data) => {
         ptyProcess.write(data);
     });
-
-    //  CHILD PROCESS SOLUTION?? NOT WORKING 
-    // const ptyArgs = {
-    //     name: 'xterm-color',
-    //     cols: 80,
-    //     rows: 80,
-    //     cwd: process.env.HOME,
-    //     env: process.env,
-    // };
-    // console.log("process.env.HOME: ", process.env.HOME);
-
-    // // is shell the right argument? 
-    // const ptyProcess = cp.spawn(shell, [], ptyArgs);
-    // console.log('ptyProcess:'); 
-    // console.log(ptyProcess); 
-    // // with ptyProcess, we want to send incoming data to the channel terminal.incData
-    // ptyProcess.stdout.on('data', (data) => {
-    //     console.log('event was caught, this is inside ptyProcess.stdout.on data'); 
-    //     console.log('data:'); 
-    //     console.log(data); 
-    //     app.webContents.send('terminal.incData', data);
-    // });
-    // // in the main process, at terminal.toTerm channel, when data is received,
-    // // main process will write to ptyProcess
-    // ipcMain.on('terminal.toTerm', (data) => {
-    //     console.log('event was caught, this is inside ipcMain.on(terminal.toTerm)');
-    //     console.log('data:');
-    //     console.log(data);
-    //     ptyProcess.stdin.write(data);
-    // });
 }
 
 // not 100% sure what this is doing 
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, '../node_modules', '.bin', 'electron')
 }); 
-
 
 /*
 UNIVERSAL IPC CALLS
@@ -173,11 +142,16 @@ ipcMain.on('OpenFolderButton.isDirectory', (e, filePath) => {
 ipcMain.on('OpenFolderButton.dialog', (e) => {
     const dialogOptions = {
         properties: ['openDirectory', 'createDirectory'],
-        filters: [
-            { name: 'Javascript Files', extensions: ['js', 'jsx'] },
-            { name: 'Style', extensions: ['css'] },
-            { name: 'Html', extensions: ['html'] },
-        ],
+// <-------------------------------------------------------------------------------------------------------------------------------------------->
+        // NOTE: The below filters prevented Linux users from being able to choose directories, and therefore from using the app almost entirely.
+        // In the interest of the most possible developers being able to use Spearmint, the filters have been removed.
+
+        // filters: [
+        //     { name: 'Javascript Files', extensions: ['js', 'jsx'] },
+        //     { name: 'Style', extensions: ['css'] },
+        //     { name: 'Html', extensions: ['html'] }
+        // ],
+// <-------------------------------------------------------------------------------------------------------------------------------------------->
         message: 'Please select your project folder',
     };
     e.returnValue = dialog.showOpenDialogSync(dialogOptions);

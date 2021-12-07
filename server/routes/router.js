@@ -4,7 +4,7 @@ const express = require('express');
 const userController = require('../controllers/userController');
 const cookieController = require('../controllers/cookieController');
 const sessionController = require('../controllers/sessionController');
-// const testStateController = require('../controllers/testStateController');
+const testStateController = require('../controllers/testStateController');
 // const githubController = require('../controllers/githubController');
 
 // Initialize an express router
@@ -40,6 +40,41 @@ router.post(
   }
 );
 
+// Set up route for get requests to /logout
+router.get(
+  '/logout',
+  // Session middleware to end any existing sessions
+  sessionController.endSession,
+  // Anonymous middleware to send back valid response
+  (req, res) => {
+    res.status(200).json('Logged Out Successfully');
+  }
+);
 
+// Set up route for post requests to /upload
+router.post(
+  '/upload',
+  // Session middleware to check if current user is signed in
+  sessionController.isLoggedIn,
+  // Upload middleware to save passed test object into DB
+  testStateController.upload,
+  // Anonymous middleware to send back valid response
+  (req, res) => {
+    res.status(200).json('Test Uploaded Successfully');
+  }
+);
+
+// Set up route for get requests to /getTests with type passed as param
+router.get(
+  '/getTests/:testType',
+  // Session middleware to check if current user is signed in
+  sessionController.isLoggedIn,
+  // GetTests middleware to retrieve all saved tests from DB
+  testStateController.getTests,
+  // Anonymous middleware to send back valid response
+  (req, res) => {
+    res.status(200).json(res.locals.tests);
+  }
+);
 
 module.exports = router;
