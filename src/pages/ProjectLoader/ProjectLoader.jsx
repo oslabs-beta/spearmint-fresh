@@ -36,6 +36,10 @@ const ProjectLoader = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    if (username.length < 4 || password.length < 4) {
+      setMessage('invalid username / password combo');
+      return;
+    }
     handleLogout();
     fetch('http://localhost:3001/login', {
       method: 'POST',
@@ -60,6 +64,10 @@ const ProjectLoader = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
+    if (username.length < 4 || password.length < 4) {
+      setMessage('invalid username / password combo');
+      return;
+    }
     fetch('http://localhost:3001/signup', {
       method: 'POST',
       headers: {
