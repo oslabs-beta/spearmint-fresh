@@ -106,3 +106,4 @@ dist
 # Custom ignore files 
 /build
 .DS_Store
+package-lock.json
