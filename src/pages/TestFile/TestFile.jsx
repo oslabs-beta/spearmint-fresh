@@ -13,7 +13,7 @@ import {
   reduxTestCaseState,
   reduxTestCaseReducer,
 } from '../../context/reducers/reduxTestCaseReducer';
-// import ReduxTestCase from '../../components/TestCase/ReduxTestCase';
+import ReduxTestCase from '../../components/TestCase/ReduxTestCase';
 
 import {
   HooksTestCaseContext,
