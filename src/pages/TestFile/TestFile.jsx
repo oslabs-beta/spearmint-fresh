@@ -6,7 +6,7 @@ import styles from '../../components/Modals/Modal.module.scss';
 import cn from 'classnames';
 
 // may be able to delete toggleReact, etc. from their respective action files
-// import ReactTestCase from '../../components/TestCase/ReactTestCase';
+import ReactTestCase from '../../components/TestCase/ReactTestCase';
 
 import {
   ReduxTestCaseContext,
@@ -149,13 +149,13 @@ const TestFile = () => {
         </section>
       )} */}
 
-      {/* {testCase === 'react' && (
+      {testCase === 'react' && (
         <section>
           <MockDataContext.Provider value={[mockData, dispatchToMockData]}>
             <ReactTestCase />
           </MockDataContext.Provider>
         </section>
-      )} */}
+      )}
 
       {/* {testCase === 'endpoint' && (
         <section>
