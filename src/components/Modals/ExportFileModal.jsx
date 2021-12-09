@@ -22,9 +22,9 @@ const ExportFileModal = ({ isExportModalOpen, setIsExportModalOpen }) => {
   const handleChangeFileName = (e) => {
     setFileName(e.target.value);
     setInvalidFileName(false);
-  }; 
+  };
 
-  // /* cancel export file (when false) */
+  /* cancel export file (when false) */
   const closeExportModal = () => {
     setIsExportModalOpen(false);
 

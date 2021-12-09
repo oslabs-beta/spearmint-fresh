@@ -50,8 +50,8 @@ const App = () => {
       <GlobalContext.Provider value={[global, dispatchToGlobal]}>
         {global.isProjectLoaded === 'about' ? (
           <>
-            {/* <NavBar inAboutPage /> */}
-            {/* <About dispatch={dispatchToGlobal} /> */}
+            <NavBar inAboutPage />
+            <About dispatch={dispatchToGlobal} />
             {' '}
           </>
         ) : (

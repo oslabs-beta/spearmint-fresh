@@ -120,15 +120,15 @@ const ProjectLoader = () => {
         <span>{message}</span>
         <br />
         <br />
-        <Button variant='primary' type='submit' id={styles.loginBtn}>
+        <Button variant='contained' type='submit' id={styles.loginBtn}>
           Log In
         </Button>
-        <Button variant='secondary' type='button' onClick={handleSignup} id={styles.loginBtn}>
+        <Button variant='outlined' type='button' onClick={handleSignup} id={styles.loginBtn}>
           Sign up
         </Button>
         <br />
       </form>
-      <Button variant='primary' id={styles.gitButton}>Login with GitHub</Button>
+      <Button variant='text' id={styles.gitButton}>Login with GitHub</Button>
     </div>
   );
 
@@ -167,7 +167,7 @@ const ProjectLoader = () => {
                 <br />
                 <br />
                 <br />
-                <Button variant='secondary' type='button' onClick={handleLogout} id={styles.loginBtn}>
+                <Button variant='contained' type='button' onClick={handleLogout} id={styles.loginBtn}>
                 LOGOUT
                 </Button>
                 <br />

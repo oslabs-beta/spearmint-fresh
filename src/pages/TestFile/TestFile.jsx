@@ -13,7 +13,7 @@ import {
   reduxTestCaseState,
   reduxTestCaseReducer,
 } from '../../context/reducers/reduxTestCaseReducer';
-// import ReduxTestCase from '../../components/TestCase/ReduxTestCase';
+import ReduxTestCase from '../../components/TestCase/ReduxTestCase';
 
 import {
   HooksTestCaseContext,
@@ -141,13 +141,13 @@ const TestFile = () => {
         </div>
       </ReactModal>
       {/* instantiate context for each test option */}
-      {/* {testCase === 'redux' && (
+      {testCase === 'redux' && (
         <section>
           <ReduxTestCaseContext.Provider value={[reduxTestCase, dispatchToReduxTestCase]}>
             <ReduxTestCase />
           </ReduxTestCaseContext.Provider>
         </section>
-      )} */}
+      )}
 
       {testCase === 'react' && (
         <section>
