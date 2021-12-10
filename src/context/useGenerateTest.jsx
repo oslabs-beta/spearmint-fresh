@@ -1147,7 +1147,8 @@ function useGenerateTest(test, projectFilePath) {
             e4x: true,
           }))
         );
-      case 'endpoint test':
+      // case was "endpoint test" but that is not the case being dispatched by the frontend
+      case 'endpoint':
         var endpointTestCase = testState;
         return (
           addEndpointImportStatements(),
