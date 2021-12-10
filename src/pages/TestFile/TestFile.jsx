@@ -49,6 +49,8 @@ import {
 } from '../../context/reducers/accTestCaseReducer';
 import AccTestCase from '../../components/TestCase/AccTestCase';
 
+import SecTestCase from '../../components/TestCase/SecTestCase';
+
 import { GlobalContext } from '../../context/reducers/globalReducer';
 import { setTestCase, toggleModal } from '../../context/actions/globalActions';
 
