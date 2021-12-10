@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styles from './ProjectLoader.module.scss';
 import { GlobalContext } from '../../context/reducers/globalReducer';
+import { setGuest } from '../../context/actions/globalActions';
 import OpenFolder from '../../components/OpenFolder/OpenFolderButton.jsx';
 import { Button, TextField } from '@material-ui/core';
 
@@ -63,7 +64,10 @@ const ProjectLoader = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleGuest = () => setIsGuest(true);
+  const handleGuest = () => {
+    setIsGuest(true);
+    dispatchToGlobal(setGuest(true));
+  }
 
   const handleSignup = (e) => {
     e.preventDefault();

@@ -25,6 +25,8 @@ export const globalState = {
   validCode: true,
   // added new state for tab index
   tabIndex: 0,
+  // added new state for logging in as guest
+  isGuest: false
 };
 
 export const globalReducer = (state, action) => {
@@ -165,6 +167,14 @@ export const globalReducer = (state, action) => {
       return {
         ...state,
       };
+    
+    case actionTypes.SET_GUEST:
+      const isGuest = action.isGuest;
+      return {
+        ...state,
+        isGuest,
+      };
+    
     default:
       return state;
   }

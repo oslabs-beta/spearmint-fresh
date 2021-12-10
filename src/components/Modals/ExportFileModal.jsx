@@ -9,8 +9,6 @@ import {
   toggleExportBool,
   updateFile,
 } from '../../context/actions/globalActions';
-import { isGuest } from '../../pages/ProjectLoader/ProjectLoader';
-console.log("ISS GUESSSTTTT =====>>>>>>",isGuest);
 import styles from './Modal.module.scss';
 
 const { ipcRenderer } = require('electron');
@@ -19,7 +17,7 @@ const { ipcRenderer } = require('electron');
     const [fileName, setFileName] = useState('');
     const [invalidFileName, setInvalidFileName] = useState(false);
     const [{ projectFilePath, file, validCode }, dispatchToGlobal] = useContext(GlobalContext);
-
+    const [ isGuest, ] = useContext(dispatchToGlobal); 
     const handleChangeFileName = (e) => {
       setFileName(e.target.value);
       setInvalidFileName(false);
@@ -114,6 +112,7 @@ const { ipcRenderer } = require('electron');
       },
     };
 
+    if (!isGuest) {
       return (
         <div>
           <ReactModal
@@ -152,6 +151,7 @@ const { ipcRenderer } = require('electron');
           </ReactModal>
         </div>
       );
+    }
   };
   
 
