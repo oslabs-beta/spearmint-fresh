@@ -27,7 +27,7 @@ import {
   endpointTestCaseState,
   endpointTestCaseReducer,
 } from '../../context/reducers/endpointTestCaseReducer';
-// import EndpointTestCase from '../../components/TestCase/EndpointTestCase';
+import EndpointTestCase from '../../components/TestCase/EndpointTestCase';
 
 import {
   puppeteerTestCaseState,
@@ -157,13 +157,13 @@ const TestFile = () => {
         </section>
       )}
 
-      {/* {testCase === 'endpoint' && (
+      {testCase === 'endpoint' && (
         <section>
           <EndpointTestCaseContext.Provider value={[endpointTestCase, dispatchToEndpointTestCase]}>
             <EndpointTestCase />
           </EndpointTestCaseContext.Provider>
         </section>
-      )} */}
+      )}
 
       {testCase === 'hooks' && (
         <section>
