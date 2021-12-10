@@ -134,6 +134,9 @@ const TestFile = () => {
             <button id={styles.save} onClick={() => handleToggle('redux')}>
               Redux
             </button>
+             <button id={styles.save} onClick={() => handleToggle('security')}>
+              Security
+            </button>
             {/* <button id={styles.save} onClick={() => handleToggle('vue')}>
               Vue
             </button> */}
@@ -190,6 +193,15 @@ const TestFile = () => {
           </AccTestCaseContext.Provider>
         </section>
       )}
+      
+      {testCase === 'security' && (
+        <section>
+          <SecTestCaseContext.Provider value={[secTestCase, dispatchToSecTestCase]}>
+            <SecTestCase />
+          </SecTestCaseContext.Provider>
+        </section>
+      )}
+
        {/* {
         //incomplete functionality: this is wired to go to a react test for now
         testCase === 'vue' && (
