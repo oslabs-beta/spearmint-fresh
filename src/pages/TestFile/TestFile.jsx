@@ -34,7 +34,7 @@ import {
   puppeteerTestCaseReducer,
   PuppeteerTestCaseContext,
 } from '../../context/reducers/puppeteerTestCaseReducer';
-// import PuppeteerTestCase from '../../components/TestCase/PuppeteerTestCase';
+import PuppeteerTestCase from '../../components/TestCase/PuppeteerTestCase';
 
 import {
   MockDataContext,
@@ -178,7 +178,7 @@ const TestFile = () => {
         </section>
       )}
 
-      {/* {testCase === 'puppeteer' && (
+      {testCase === 'puppeteer' && (
         <section>
           <PuppeteerTestCaseContext.Provider
             value={[puppeteerTestCase, dispatchToPuppeteerTestCase]}
@@ -186,7 +186,7 @@ const TestFile = () => {
             <PuppeteerTestCase />
           </PuppeteerTestCaseContext.Provider>
         </section>
-      )} */}
+      )}
 
       {testCase === 'acc' && (
         <section>
