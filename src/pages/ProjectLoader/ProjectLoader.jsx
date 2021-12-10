@@ -10,6 +10,7 @@ const ProjectLoader = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isGuest, setIsGuest] = useState(false);
   const [message, setMessage] = useState('');
 
   const addHttps = (url) => {
@@ -61,6 +62,8 @@ const ProjectLoader = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  const handleGuest = () => setIsGuest(true);
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -129,6 +132,10 @@ const ProjectLoader = () => {
         <br />
       </form>
       <Button variant='text' id={styles.gitButton}>Login with GitHub</Button>
+      <br />
+      <Button variant='text' onClick={handleGuest} id={styles.guestButton}>Guest Login</Button>
+      <br />
+      <br />
     </div>
   );
 
@@ -153,11 +160,11 @@ const ProjectLoader = () => {
       <section id={styles.lowerPart}>
         <div id={styles.appBox}>
           {/* Open Project Directory If User is Logged In */}
-          {!isLoggedIn ? (
+          {!isLoggedIn && !isGuest ? (
             renderLogin()
           ) : (
             <div className={styles.contentBox}>
-              <span className={styles.text}>Currently logged in as {username}!</span>
+              <span className={styles.text}>Currently logged in as {username || "guest" }!</span>
               <br />
               <br />
               <br />
