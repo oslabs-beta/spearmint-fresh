@@ -20,7 +20,7 @@ import {
   hooksTestCaseState,
   hooksTestCaseReducer,
 } from '../../context/reducers/hooksTestCaseReducer';
-// import HooksTestCase from '../../components/TestCase/HooksTestCase';
+import HooksTestCase from '../../components/TestCase/HooksTestCase';
 
 import {
   EndpointTestCaseContext,
@@ -168,13 +168,13 @@ const TestFile = () => {
         </section>
       )} */}
 
-      {/* {testCase === 'hooks' && (
+      {testCase === 'hooks' && (
         <section>
           <HooksTestCaseContext.Provider value={[hooksTestCase, dispatchToHooksTestCase]}>
             <HooksTestCase />
           </HooksTestCaseContext.Provider>
         </section>
-      )} */}
+      )}
 
       {/* {testCase === 'puppeteer' && (
         <section>
