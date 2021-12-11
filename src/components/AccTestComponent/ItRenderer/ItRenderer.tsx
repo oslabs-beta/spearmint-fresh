@@ -62,7 +62,7 @@ const ItRenderer = ({
             className={cn(styles.itClose, 'far fa-window-close')}
           />
 
-          <p class={styles.itStatement}>{itStatements.byId[id].text}</p>
+          <p className={styles.itStatement}>{itStatements.byId[id].text}</p>
           <hr />
 
         </div>
