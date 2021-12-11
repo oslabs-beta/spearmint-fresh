@@ -35,6 +35,7 @@ const ItRenderer = ({
     <Draggable
       draggableId={id}
       index={i}
+      key={`itRenderer-${id}`}
     >
       {(provided) => (
         <div

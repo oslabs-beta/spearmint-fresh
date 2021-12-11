@@ -94,7 +94,7 @@ const AccTestCase = () => {
                 {...provided.droppableProps}
               > 
                 <DecribeRenderer
-                  key="bananas"
+                  key="describeRendererAcc"
                   dispatcher={dispatchToAccTestCase}
                   describeBlocks={describeBlocks}
                   itStatements={itStatements}
