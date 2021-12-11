@@ -65,7 +65,8 @@ const ProjectLoader = () => {
   };
 
   const handleGuest = () => {
-   setIsGuest(true);
+    setIsGuest(true);
+    console.log('SETISGUEST @ PROJECT LOADER:', setIsGuest);
    setGuest(true);
   }
 
