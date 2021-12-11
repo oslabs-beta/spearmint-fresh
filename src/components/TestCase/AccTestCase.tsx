@@ -82,17 +82,19 @@ const AccTestCase = () => {
           )}
         </div>
 
-        <DragDropContext onDragEnd={onDragEnd}>
+        <DragDropContext onDragEnd={onDragEnd} key={`acc-dnd-context`}>
           <Droppable
             droppableId="droppableAccDescribe"
+            key="acc-droppable-context"
             type="describe"
           >
             {(provided) => (
               <div
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-              >
+              > 
                 <DecribeRenderer
+                  key="bananas"
                   dispatcher={dispatchToAccTestCase}
                   describeBlocks={describeBlocks}
                   itStatements={itStatements}
