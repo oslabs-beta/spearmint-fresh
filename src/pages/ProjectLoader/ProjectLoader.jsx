@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styles from './ProjectLoader.module.scss';
 import { GlobalContext } from '../../context/reducers/globalReducer';
+import {setGuest} from '../../context/actions/globalActions'
 import OpenFolder from '../../components/OpenFolder/OpenFolderButton.jsx';
 import { Button, TextField } from '@material-ui/core';
 
@@ -33,6 +34,13 @@ const ProjectLoader = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+
+  // guest login
+  const handleGuestLogin = () => {
+    // dispatch to global context 
+    dispatchToGlobal(setGuest(true));
+    setIsLoggedIn(true);
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -128,6 +136,7 @@ const ProjectLoader = () => {
         </Button>
         <br />
       </form>
+      <Button variant='text' id={styles.gitButton} onClick={handleGuestLogin}>Login as Guest</Button>
       <Button variant='text' id={styles.gitButton}>Login with GitHub</Button>
     </div>
   );
