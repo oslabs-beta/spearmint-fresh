@@ -39,7 +39,10 @@ const ProjectLoader = () => {
   const handleGuestLogin = () => {
     // dispatch to global context 
     dispatchToGlobal(setGuest(true));
+    // set logged in to true 
     setIsLoggedIn(true);
+    // set current username to guest 
+    setUsername('guest'); 
   }
 
   const handleLogin = (e) => {
@@ -137,6 +140,7 @@ const ProjectLoader = () => {
         <br />
       </form>
       <Button variant='text' id={styles.gitButton} onClick={handleGuestLogin}>Login as Guest</Button>
+      <br/>
       <Button variant='text' id={styles.gitButton}>Login with GitHub</Button>
     </div>
   );
