@@ -125,4 +125,4 @@ export const uploadTest = (testState) => ({
 export const setGuest = (guestState) => ({
   type: actionTypes.SET_GUEST,
   guestState,
-})
+}) 
