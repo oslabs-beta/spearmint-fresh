@@ -18,8 +18,6 @@ const { ipcRenderer } = require('electron');
     const [fileName, setFileName] = useState('');
     const [invalidFileName, setInvalidFileName] = useState(false);
     const [{ projectFilePath, file, validCode, isGuest }, dispatchToGlobal] = useContext(GlobalContext);
-    console.log(isGuest);
-    // const [ isGuest, ] = useContext(dispatchToGlobal); 
     const handleChangeFileName = (e) => {
       setFileName(e.target.value);
       setInvalidFileName(false);
@@ -115,7 +113,6 @@ const { ipcRenderer } = require('electron');
     };
 
     // if (!isGuest) {
-      console.log(GlobalContext)
       return (
         <div>
           <ReactModal

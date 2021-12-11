@@ -62,7 +62,7 @@ const Reducer = ({ reducer, index }) => {
           </div>
           <div id={styles.reducerNameFlexBox}>
             <div id={styles.reducerName}>
-              <label htmlFor='initialStae'>Initial State</label>
+              <label htmlFor='initialState'>Initial State</label>
               <input
                 type='text'
                 id='initialState'

@@ -65,9 +65,9 @@ const ProjectLoader = () => {
   };
 
   const handleGuest = () => {
-    setIsGuest(true);
-    console.log('SETISGUEST @ PROJECT LOADER:', setIsGuest);
-   setGuest(true);
+    // update global context isGuest to true
+    dispatchToGlobal(setGuest(true));
+    setIsLoggedIn(true);;
   }
 
   const handleSignup = (e) => {
