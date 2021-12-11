@@ -3,6 +3,8 @@ const path = require('path');
 const fs = require('fs');
 const np = require('node-pty');
 const os = require('os');
+
+const exec = require('child_process').exec;
 // react developer tools for electron in dev mode 
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 // global bool to determine if in dev mode or not 
@@ -157,3 +159,13 @@ ipcMain.on('OpenFolderButton.dialog', (e) => {
 
 
 app.whenReady().then(createWindow);
+
+// //--------- kill port when app closes/quits ---------- //
+
+// app.on('closed', () => {
+//     child = exec('npx kill-port 3001');
+//     child();
+// 
+// });
+
+ 

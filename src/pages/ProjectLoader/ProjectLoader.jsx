@@ -65,8 +65,8 @@ const ProjectLoader = () => {
   };
 
   const handleGuest = () => {
-    setIsGuest(true);
-    dispatchToGlobal(setGuest(true));
+   setIsGuest(true);
+   setGuest(true);
   }
 
   const handleSignup = (e) => {

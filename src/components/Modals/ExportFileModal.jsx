@@ -9,6 +9,7 @@ import {
   toggleExportBool,
   updateFile,
 } from '../../context/actions/globalActions';
+
 import styles from './Modal.module.scss';
 
 const { ipcRenderer } = require('electron');
@@ -16,8 +17,9 @@ const { ipcRenderer } = require('electron');
   const ExportFileModal = ({ isExportModalOpen, setIsExportModalOpen }) => {
     const [fileName, setFileName] = useState('');
     const [invalidFileName, setInvalidFileName] = useState(false);
-    const [{ projectFilePath, file, validCode }, dispatchToGlobal] = useContext(GlobalContext);
-    const [ isGuest, ] = useContext(dispatchToGlobal); 
+    const [{ projectFilePath, file, validCode, isGuest }, dispatchToGlobal] = useContext(GlobalContext);
+    console.log(isGuest);
+    // const [ isGuest, ] = useContext(dispatchToGlobal); 
     const handleChangeFileName = (e) => {
       setFileName(e.target.value);
       setInvalidFileName(false);
@@ -112,7 +114,8 @@ const { ipcRenderer } = require('electron');
       },
     };
 
-    if (!isGuest) {
+    // if (!isGuest) {
+      console.log(GlobalContext)
       return (
         <div>
           <ReactModal
@@ -152,7 +155,7 @@ const { ipcRenderer } = require('electron');
         </div>
       );
     }
-  };
+  // };
   
 
 export default ExportFileModal;

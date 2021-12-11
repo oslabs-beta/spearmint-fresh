@@ -169,10 +169,11 @@ export const globalReducer = (state, action) => {
       };
     
     case actionTypes.SET_GUEST:
-      const isGuest = action.isGuest;
+      const guest = action.guestState;
+      
       return {
         ...state,
-        isGuest,
+        isGuest:guest,
       };
     
     default:
