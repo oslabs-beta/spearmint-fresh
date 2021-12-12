@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import styles from './TestCase.module.scss';
 import { setTabIndex } from '../../context/actions/globalActions';
 
 import { GlobalContext } from '../../context/reducers/globalReducer';
 
+import styles from './TestCase.module.scss';
+import SecTestMenu from '../TestMenu/SecTestMenu';
 import { Button, TextField } from '@material-ui/core';
 
 const ipc = require('electron').ipcRenderer;
