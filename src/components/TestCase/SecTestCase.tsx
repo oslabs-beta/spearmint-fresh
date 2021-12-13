@@ -12,6 +12,7 @@ const os = require('os');
 
 const SecTestCase = () => {
 
+  const { title, isModalOpen, openModal, openScriptModal, closeModal, } = useToggleModal('sec');
   const [{ isFileDirectoryOpen }, dispatchToGlobal] = useContext(GlobalContext);
 
   // Change execute command based on os platform
@@ -54,7 +55,7 @@ const SecTestCase = () => {
         <p>
           
         </p>
-        <Button variant='contained' type='button' id={styles.secTestBtn} onClick={snykAuth}>
+        <Button variant='contained' type='button' id={styles.secTestBtn} onClick={openScriptModal}>
           Authenticate Snyk
         </Button>
         <br />
