@@ -36,6 +36,11 @@ const SecTestCase = () => {
     dispatchToGlobal(setTabIndex(2));
   };
 
+  const snykWizard = () => {
+    ipc.send('terminal.toTerm', `snyk wizard ${execute}`);
+    dispatchToGlobal(setTabIndex(2));
+  };
+
   return (
     <div id={styles.SecTestCase}>
       <div id="head">
@@ -54,10 +59,17 @@ const SecTestCase = () => {
         </Button>
         <br />
         <br />
+        <Button variant='outlined' type='button' id={styles.snyk} onClick={snykWizard}>
+          Dependency Wizard
+        </Button>
         <Button variant='outlined' type='button' id={styles.snyk} onClick={applicationTest}>
           Test Application
         </Button>
+        <br />
+        <br />
       </section>
     </div>
   )
 }
+
+export default SecTestCase;
