@@ -30,17 +30,17 @@ const SecTestCase = () => {
   };
 
   const dependencyTest = () => {
-    ipc.send('terminal.toTerm', `snyk test --dev ${execute}`);
+    ipc.send('terminal.toTerm', `snyk test ${execute}`);
     dispatchToGlobal(setTabIndex(2));
   };
 
   const applicationTest = () => {
-    ipc.send('terminal.toTerm', `snyk code test --dev ${execute}`);
+    ipc.send('terminal.toTerm', `snyk code test ${execute}`);
     dispatchToGlobal(setTabIndex(2));
   };
 
   const snykWizard = () => {
-    ipc.send('terminal.toTerm', `snyk wizard --dev ${execute}`);
+    ipc.send('terminal.toTerm', `snyk wizard ${execute}`);
     dispatchToGlobal(setTabIndex(2));
   };
 
