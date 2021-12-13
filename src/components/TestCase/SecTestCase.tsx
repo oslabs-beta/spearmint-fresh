@@ -22,22 +22,25 @@ const SecTestCase = () => {
 
   // sends user to webpage to authenticate use of snyk in terminal
   const snykAuth = () => {
+    if (os.platform() === 'win32') {
+      ipc.send('terminal.toTerm', `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted ${execute}`);
+    }
     ipc.send('terminal.toTerm', `snyk auth ${execute}`);
     dispatchToGlobal(setTabIndex(2));
   };
 
   const dependencyTest = () => {
-    ipc.send('terminal.toTerm', `snyk test ${execute}`);
+    ipc.send('terminal.toTerm', `snyk test --dev ${execute}`);
     dispatchToGlobal(setTabIndex(2));
   };
 
   const applicationTest = () => {
-    ipc.send('terminal.toTerm', `snyk code test ${execute}`);
+    ipc.send('terminal.toTerm', `snyk code test --dev ${execute}`);
     dispatchToGlobal(setTabIndex(2));
   };
 
   const snykWizard = () => {
-    ipc.send('terminal.toTerm', `snyk wizard ${execute}`);
+    ipc.send('terminal.toTerm', `snyk wizard --dev ${execute}`);
     dispatchToGlobal(setTabIndex(2));
   };
 
