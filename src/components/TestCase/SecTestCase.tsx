@@ -5,7 +5,7 @@ import { GlobalContext } from '../../context/reducers/globalReducer';
 
 import styles from './TestCase.module.scss';
 import SecTestMenu from '../TestMenu/SecTestMenu';
-import { Button, TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 const ipc = require('electron').ipcRenderer;
 const os = require('os');
@@ -48,21 +48,26 @@ const SecTestCase = () => {
       </div>
 
       <section>
-        <Button variant='contained' type='button' id={styles.snyk} onClick={snykAuth}>
+        <p>
+          
+        </p>
+        <Button variant='contained' type='button' id={styles.secTestBtn} onClick={snykAuth}>
           Authenticate Snyk
         </Button>
         <br />
         <br />
         <br />
-        <Button variant='outlined' type='button' id={styles.snyk} onClick={dependencyTest}>
+        <Button variant='outlined' type='button' id={styles.secTestBtn} onClick={dependencyTest}>
           Test Dependencies
         </Button>
         <br />
         <br />
-        <Button variant='outlined' type='button' id={styles.snyk} onClick={snykWizard}>
+        <Button variant='outlined' type='button' id={styles.secTestBtn} onClick={snykWizard}>
           Fix Dependencies
         </Button>
-        <Button variant='outlined' type='button' id={styles.snyk} onClick={applicationTest}>
+        <br />
+        <br />
+        <Button variant='outlined' type='button' id={styles.secTestBtn} onClick={applicationTest}>
           Test Application
         </Button>
         <br />

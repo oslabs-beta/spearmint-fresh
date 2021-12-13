@@ -154,3 +154,13 @@ div {
   display: flex;
   justify-content: flex-start;
 }
+
+#secTestBtn {
+
+  min-height: 80px;
+  padding: 16px;
+
+  &:hover {
+      font-size: 0.9rem;
+  }
+}

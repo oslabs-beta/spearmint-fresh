@@ -50,13 +50,11 @@ const SecTestMenu = () => {
           {/* set a few of these properties to null since they are required to be present but accept any data type... just for testing*/}
           <Modal
             title={title}
+            dispatchToMockData={null}
             isModalOpen={isModalOpen}
             closeModal={closeModal}
-            dispatchToMockData={null}
             dispatchTestCase={dispatchToSecTestCase}
             createTest={createNewSecTest}
-            testType={secTestCase.testType}
-            puppeteerUrl={'sample.io'}
           />
         </div>
         <div
