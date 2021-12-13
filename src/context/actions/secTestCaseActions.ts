@@ -3,8 +3,8 @@
 export const actionTypes = {
   OPEN_INFO_MODAL: 'OPEN_INFO_MODAL',
   CLOSE_INFO_MODAL: 'CLOSE_INFO_MODAL',
-  CREATE_NEW_SEC_TEST: 'CREATE_NEW_SEC_TEST'
-  REPLACE_TEST: 'REPLACE_TEST',
+  CREATE_NEW_SEC_TEST: 'CREATE_NEW_SEC_TEST',
+  REPLACE_TEST: 'REPLACE_TEST'
 };
 
 /* --------------------------------- Actions -------------------------------- */

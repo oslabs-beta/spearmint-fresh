@@ -12,6 +12,7 @@ import { reactReplaceTest } from '../../context/actions/reactTestCaseActions';
 import { ReduxTestCaseContext } from '../../context/reducers/reduxTestCaseReducer';
 import { reduxReplaceTest } from '../../context/actions/reduxTestCaseActions';
 import { SecTestCaseContext } from '../../context/reducers/secTestCaseReducer';
+import { secReplaceTest } from '../../context/actions/secTestCaseActions';
 
 import ReactModal from 'react-modal';
 import List from '@material-ui/core/List';

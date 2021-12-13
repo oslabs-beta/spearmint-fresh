@@ -4,6 +4,7 @@ import { GlobalContext } from '../../context/reducers/globalReducer';
 import { openBrowserDocs } from '../../context/actions/globalActions';
 import { createNewSecTest } from '../../context/actions/secTestCaseActions';
 import Modal from '../Modals/Modal';
+import useGenerateTest from '../../context/useGenerateTest.jsx';
 import {
   updateFile,
   setFilePath,
@@ -12,7 +13,7 @@ import {
   setTestCase,
   toggleModal,
 } from '../../context/actions/globalActions';
-// import { SecTestCaseContext } from '../../context/reducers/secTestCaseReducer';
+import { SecTestCaseContext } from '../../context/reducers/secTestCaseReducer';
 import { useToggleModal } from './testMenuHooks';
 
 const SecTestMenu = () => {
@@ -22,6 +23,7 @@ const SecTestMenu = () => {
   /* initialize hooks */
   // 
   const { title, isModalOpen, openModal, openScriptModal, closeModal, } = useToggleModal('sec');
+  const [secTestCase, dispatchToSecTestCase] = useContext(SecTestCaseContext);
   const [{ projectFilePath, file, exportBool, isTestModalOpen }, dispatchToGlobal] = useContext<any>(GlobalContext);
 
   // setValidCode to true on load.
@@ -45,17 +47,15 @@ const SecTestMenu = () => {
           <button id={styles.example} onClick={openDocs}>
             Need Help?
           </button>
-          {/* <UploadTest testType="acc" />
-          <GetTests testType="acc" /> */}
           {/* set a few of these properties to null since they are required to be present but accept any data type... just for testing*/}
           <Modal
             title={title}
             isModalOpen={isModalOpen}
             closeModal={closeModal}
             dispatchToMockData={null}
-            dispatchTestCase={null}
+            dispatchTestCase={dispatchToSecTestCase}
             createTest={createNewSecTest}
-            testType={null}
+            testType={secTestCase.testType}
             puppeteerUrl={'sample.io'}
           />
         </div>

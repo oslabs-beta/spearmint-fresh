@@ -60,7 +60,7 @@ const SecTestCase = () => {
         <br />
         <br />
         <Button variant='outlined' type='button' id={styles.snyk} onClick={snykWizard}>
-          Dependency Wizard
+          Fix Dependencies
         </Button>
         <Button variant='outlined' type='button' id={styles.snyk} onClick={applicationTest}>
           Test Application
