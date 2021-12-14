@@ -49,6 +49,13 @@ import {
 } from '../../context/reducers/accTestCaseReducer';
 import AccTestCase from '../../components/TestCase/AccTestCase';
 
+import {
+  SecTestCaseContext,
+  secTestCaseState,
+  secTestCaseReducer,
+} from '../../context/reducers/secTestCaseReducer';
+import SecTestCase from '../../components/TestCase/SecTestCase';
+
 import { GlobalContext } from '../../context/reducers/globalReducer';
 import { setTestCase, toggleModal } from '../../context/actions/globalActions';
 
@@ -73,7 +80,14 @@ const TestFile = () => {
     puppeteerTestCaseReducer,
     puppeteerTestCaseState
   );
-  const [accTestCase, dispatchToAccTestCase] = useReducer(accTestCaseReducer, accTestCaseState);
+  const [accTestCase, dispatchToAccTestCase] = useReducer(
+    accTestCaseReducer,
+    accTestCaseState
+  );
+  const [secTestCase, dispatchToSecTestCase] = useReducer(
+    secTestCaseReducer,
+    secTestCaseState
+  );
 
   const closeTestModal = () => {
     dispatchToGlobal(toggleModal());
@@ -134,6 +148,9 @@ const TestFile = () => {
             <button id={styles.save} onClick={() => handleToggle('redux')}>
               Redux
             </button>
+            <button id={styles.save} onClick={() => handleToggle('sec')}>
+              Security
+            </button>
             {/* <button id={styles.save} onClick={() => handleToggle('vue')}>
               Vue
             </button> */}
@@ -188,6 +205,13 @@ const TestFile = () => {
           <AccTestCaseContext.Provider value={[accTestCase, dispatchToAccTestCase]}>
             <AccTestCase />
           </AccTestCaseContext.Provider>
+        </section>
+      )}
+      {testCase === 'sec' && (
+        <section>
+          <SecTestCaseContext.Provider value={[secTestCase, dispatchToSecTestCase]}>
+            <SecTestCase />
+          </SecTestCaseContext.Provider>
         </section>
       )}
        {/* {
