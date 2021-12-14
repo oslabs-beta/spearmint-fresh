@@ -89,7 +89,7 @@ const EndpointAssertion = ({ assertion, index, id }: EndpointProps) => {
           </span>
         </div>
       </div>
-      {/*
+      
       <div id={styles.labelInput}>
         <label htmlFor='value'>Expected Value</label>
         <div id={styles.inputFlexBox}>
@@ -107,7 +107,7 @@ const EndpointAssertion = ({ assertion, index, id }: EndpointProps) => {
         style={{ position: 'relative', top: '-15px' }}
         alt='close'
         onClick={handleClickDeleteAssertion}
-      /> */}
+      />
     </div>
   );
 };
