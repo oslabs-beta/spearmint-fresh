@@ -12,7 +12,6 @@ const os = require('os');
 
 const SecTestCase = () => {
 
-  const { title, isModalOpen, openModal, openScriptModal, closeModal, } = useToggleModal('sec');
   const [{ isFileDirectoryOpen }, dispatchToGlobal] = useContext(GlobalContext);
 
   // Change execute command based on os platform
@@ -45,6 +44,11 @@ const SecTestCase = () => {
     dispatchToGlobal(setTabIndex(2));
   };
 
+  // sends user to snyk settings in default browser to enable Snyk Code
+  const enableSnykCode = () => {
+    require('electron').shell.openExternal('https://app.snyk.io/manage/snyk-code');
+  }
+
   return (
     <div id={styles.SecTestCase}>
       <div id="head">
@@ -52,10 +56,15 @@ const SecTestCase = () => {
       </div>
 
       <section>
-        <p>
-          
-        </p>
-        <Button variant='contained' type='button' id={styles.secTestBtn} onClick={openScriptModal}>
+        <div id={styles.secInfo}>
+          <p>
+            Spearmint leverages Snyk testing in order to evaluate security vulnerabilities.
+            <br />
+            The below button will send you to Snyk's website to grant permission.
+          </p>
+        </div>
+        <br />
+        <Button variant='contained' type='button' id={styles.secTestBtn} onClick={snykAuth}>
           Authenticate Snyk
         </Button>
         <br />
@@ -68,6 +77,19 @@ const SecTestCase = () => {
         <br />
         <Button variant='outlined' type='button' id={styles.secTestBtn} onClick={snykWizard}>
           Fix Dependencies
+        </Button>
+        <br />
+        <br />
+        <br />
+        <br />
+        <p id={styles.secInfo}>
+          To utilize Snyk's application-wide testing tool, Snyk Code must be enabled.
+          <br />
+          The below button will send you to Snyk's website to update your settings.
+        </p>
+        <br />
+        <Button variant='contained' type='button' id={styles.secTestBtn} onClick={enableSnykCode}>
+          Enable Snyk Code
         </Button>
         <br />
         <br />

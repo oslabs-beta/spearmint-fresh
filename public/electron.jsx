@@ -28,8 +28,8 @@ if (isDev) {
 // setup electron window 
 function createWindow(params) {
     const app = new BrowserWindow({
-        width:1550,
-        heigh:800,
+        width:1782,
+        height:920,
         backgroundColor: "white",
         webPreferences:{
             nodeIntegration: true, // changed to true from legacy to resolve an issue with OpenFolderButton
