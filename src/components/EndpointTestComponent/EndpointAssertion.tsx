@@ -58,7 +58,7 @@ const EndpointAssertion = ({ assertion, index, id }: EndpointProps) => {
           </datalist>
         </div>
       </div>
-      <div id={styles.dropdownWrapper}>
+       <div id={styles.dropdownWrapper}>
         <div id={styles.endMatcherLabel}>
           <div>
             <label htmlFor='matcher'>Matcher</label>
@@ -72,14 +72,15 @@ const EndpointAssertion = ({ assertion, index, id }: EndpointProps) => {
             />
           </div>
         </div>
+        
         <div id={styles.dropdownFlex}>
           <select
             id='method'
             value={assertion.matcher}
             onChange={(e) => handleChangeUpdateAssertion(e, 'matcher')}
           >
-            {jestMatchers.map((matcher) => (
-              <option value={matcher}>{matcher}</option>
+            {jestMatchers.map((matcher, index) => (
+              <option value={matcher} key={`jestMatcher-${index}`}>{matcher}</option>
             ))}
           </select>{' '}
           <span id={stylez.hastooltip} role='tooltip'>
@@ -88,6 +89,7 @@ const EndpointAssertion = ({ assertion, index, id }: EndpointProps) => {
           </span>
         </div>
       </div>
+      {/*
       <div id={styles.labelInput}>
         <label htmlFor='value'>Expected Value</label>
         <div id={styles.inputFlexBox}>
@@ -105,7 +107,7 @@ const EndpointAssertion = ({ assertion, index, id }: EndpointProps) => {
         style={{ position: 'relative', top: '-15px' }}
         alt='close'
         onClick={handleClickDeleteAssertion}
-      />
+      /> */}
     </div>
   );
 };
