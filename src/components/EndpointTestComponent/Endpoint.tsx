@@ -66,7 +66,7 @@ const Endpoint = ({ endpoint, index, dispatchToEndpointTestCase }: EndpointProps
 
   return (
     <div style={{ maxWidth: '650px' }}>
-      <Draggable draggableId={endpoint.id.toString()} index={index}>
+      <Draggable draggableId={endpoint.id.toString()} index={index} key={`endpointDraggable-${index}`}>
         {(provided) => (
           <div
             ref={provided.innerRef}
@@ -144,7 +144,7 @@ const Endpoint = ({ endpoint, index, dispatchToEndpointTestCase }: EndpointProps
               </div>
             </div>{' '}
             {endpoint.assertions.map((assertion: Assertion, i: number) => {
-              return <EndpointAssertion assertion={assertion} index={index} id={i} />;
+              return <EndpointAssertion assertion={assertion} index={index} id={i} key={`endpointAssertion-${index}-${i}`}/>;
             })}{' '}
             {endpoint.post && (
               <div id={style.RenderContainer} style={{ margin: '10px 0 0 0' }}>
