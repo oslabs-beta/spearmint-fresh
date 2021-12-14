@@ -7,6 +7,14 @@ testStateController.upload = (req, res, next) => {
   const { testName, testType, testState } = req.body;
   const userId = req.cookies.ssid;
 
+  console.log('userId type => ', typeof userId, 'testName type => ', typeof testName, 'testType type => ', typeof testType, 'testState type => ', typeof testState);
+
+  // validating the types of document properties
+  if (typeof userId !== 'string' ||
+    typeof testName !== 'string' ||
+    typeof testType !== 'string' ||
+    typeof testState !== 'object') return next({ log: 'encountered a type error inside of testStateController.upload' });
+
   TestState.create(
     {
       userId,
@@ -15,7 +23,6 @@ testStateController.upload = (req, res, next) => {
       testState
     },
     (err) => {
-      console.log(err);
       if (err) return next('Upload Failed');
       return next();
     }

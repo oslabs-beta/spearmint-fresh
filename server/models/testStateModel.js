@@ -17,16 +17,7 @@ const testStateSchema = new Schema({
 
 // Mongoose does not validate the types of the properties specified in schema
 // It will only coerce the properties to equal the types specified above
-// Therefore we use a pre-script to throw an error if any prop is the incorrect type,
-  // preventing the uploading of documents with incorrect data type
-testStateSchema.pre('save', function(next) {
-  if (typeof userId !== 'string' ||
-      typeof testName !== 'string' ||
-      typeof testType !== 'string' ||
-      typeof testState !== 'object') {
-        return next('type failure');
-      }
-  else return next();
-});
+// Therefore implementing data validation inside testStateController.upload
+
 
 module.exports = mongoose.model('testState', testStateSchema);
