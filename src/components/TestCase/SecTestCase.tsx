@@ -23,17 +23,7 @@ const SecTestCase = () => {
     execute = '\r';
   }
 
-  // sends user to webpage to authenticate use of snyk in terminal
-  const snykAuth = () => {
-    if (os.platform() === 'win32') {
-      ipc.send('terminal.toTerm', `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted ${execute}`);
-    }
-    ipc.send('terminal.toTerm', `snyk auth ${execute}`);
-    dispatchToGlobal(setTabIndex(2));
-  };
-
   const snykInstall = () => {
-    
     // changes directory to project file directory
     ipc.send('terminal.toTerm', `${script.cd}${execute}`);
     setBtnFeedback({ ...btnFeedback, changedDir: true });
@@ -43,6 +33,15 @@ const SecTestCase = () => {
     setBtnFeedback({ ...btnFeedback, installed: true });
     dispatchToGlobal(setTabIndex(2));
   }
+
+  // sends user to webpage to authenticate use of snyk in terminal
+  const snykAuth = () => {
+    if (os.platform() === 'win32') {
+      ipc.send('terminal.toTerm', `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted ${execute}`);
+    }
+    ipc.send('terminal.toTerm', `snyk auth ${execute}`);
+    dispatchToGlobal(setTabIndex(2));
+  };
 
   const dependencyTest = () => {
     ipc.send('terminal.toTerm', `snyk test ${execute}`);
@@ -78,7 +77,7 @@ const SecTestCase = () => {
             <br />
             Some assembly required.
             <br />
-            First, please click below to install Snyk in your project file directory.
+            If this is your first time, please click below to install Snyk globally on your machine.
             <br />
           </p>
         </div>

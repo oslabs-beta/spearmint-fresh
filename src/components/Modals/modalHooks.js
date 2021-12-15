@@ -99,7 +99,7 @@ export function useGenerateScript(test, testType = null, puppeteerUrl = 'sample.
     case 'sec':
       return {
         cd: `cd ${projectFilePath}`,
-        install: 'npm i -D snyk'
+        install: 'npm i snyk@latest -g'
       }
     default:
       return '';
