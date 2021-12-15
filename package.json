@@ -47,7 +47,6 @@
     "sass": "^1.37.5",
     "sass-loader": "^12.1.0",
     "save-dev": "0.0.1-security",
-    "shell-path": "^3.0.0",
     "snyk": "^1.790.0",
     "style-loader": "^3.2.1",
     "webpack": "^5.50.0",
