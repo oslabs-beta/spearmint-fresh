@@ -16,7 +16,7 @@ const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
 // setup electron window 
 function createWindow(params) {
     const app = new BrowserWindow({
-        width:1782,
+        width:1760,
         height:920,
         backgroundColor: "white",
         icon: path.join(__dirname, 'icon.png'),

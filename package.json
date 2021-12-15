@@ -82,7 +82,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "spearmint_fresh"
+            "name": "spearmint"
           }
         },
         {
