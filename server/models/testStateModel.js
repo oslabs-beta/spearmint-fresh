@@ -19,5 +19,4 @@ const testStateSchema = new Schema({
 // It will only coerce the properties to equal the types specified above
 // Therefore implementing data validation inside testStateController.upload
 
-
 module.exports = mongoose.model('testState', testStateSchema);

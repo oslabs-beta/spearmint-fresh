@@ -56,6 +56,8 @@ router.post(
   '/upload',
   // Session middleware to check if current user is signed in
   sessionController.isLoggedIn,
+  // Middleware to validate whether our data fits the model
+  testStateController.validate,
   // Upload middleware to save passed test object into DB
   testStateController.upload,
   // Anonymous middleware to send back valid response
