@@ -58,6 +58,9 @@ if (isDev) {
     });
 };
 
+// 
+if (os.platform() !== 'win32') require('fix-path')
+
 // Add react dev tools to electron app 
 if (isDev) {
     app.whenReady().then(() => {
