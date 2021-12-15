@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron-forge start",
-    "start-dev": "concurrently \"electron .\" \"nodemon server/server.js\"",
+    "start-dev": "electron .",
     "watch": "webpack --config webpack.config.ts --watch",
     "package": "electron-forge package",
     "make": "electron-forge make"
