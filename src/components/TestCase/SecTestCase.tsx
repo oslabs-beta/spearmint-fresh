@@ -77,7 +77,7 @@ const SecTestCase = () => {
             <br />
             Some assembly required.
             <br />
-            If this is your first time, please click below to install Snyk globally on your machine.
+            If this is your first time using this feature, please click below to install Snyk globally on your machine.
             <br />
           </p>
         </div>
@@ -88,7 +88,7 @@ const SecTestCase = () => {
         <div id={styles.secInfo}>
           <p>
             <br />
-            Second, please click below to be directed to Snyk's website to grant permission to the tool to run in your terminal.
+            Once installed, please click below to be directed to Snyk's website to grant permission to the tool to run in your terminal.
           </p>
         </div>
         <br />
