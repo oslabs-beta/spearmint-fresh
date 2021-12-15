@@ -104,6 +104,7 @@ dist
 .tern-port
 
 # Custom ignore files 
+/out
 /build
 .DS_Store
 package-lock.json
