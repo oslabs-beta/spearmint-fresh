@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { setTabIndex } from '../../context/actions/globalActions';
+import { useGenerateScript } from '../Modals/modalHooks';
 
 import { GlobalContext } from '../../context/reducers/globalReducer';
 
@@ -12,6 +13,8 @@ const os = require('os');
 
 const SecTestCase = () => {
 
+  const script = useGenerateScript('sec');
+  const [btnFeedback, setBtnFeedback] = useState({ changedDir: false, installed: false });
   const [{ isFileDirectoryOpen }, dispatchToGlobal] = useContext(GlobalContext);
 
   // Change execute command based on os platform
@@ -28,6 +31,18 @@ const SecTestCase = () => {
     ipc.send('terminal.toTerm', `snyk auth ${execute}`);
     dispatchToGlobal(setTabIndex(2));
   };
+
+  const snykInstall = () => {
+    
+    // changes directory to project file directory
+    ipc.send('terminal.toTerm', `${script.cd}${execute}`);
+    setBtnFeedback({ ...btnFeedback, changedDir: true });
+
+    // installs snyk
+    ipc.send('terminal.toTerm', `${script.install}${execute}`);
+    setBtnFeedback({ ...btnFeedback, installed: true });
+    dispatchToGlobal(setTabIndex(2));
+  }
 
   const dependencyTest = () => {
     ipc.send('terminal.toTerm', `snyk test ${execute}`);
@@ -60,12 +75,26 @@ const SecTestCase = () => {
           <p>
             Spearmint leverages Snyk testing in order to evaluate security vulnerabilities.
             <br />
-            The below button will send you to Snyk's website to grant permission.
+            <br />
+            Some assembly required.
+            <br />
+            First, please click below to install Snyk in your project file directory.
+            <br />
+          </p>
+        </div>
+        <br />
+        <Button variant='contained' type='button' id={styles.secTestBtn} onClick={snykInstall}>
+          Install Snyk
+        </Button>
+        <div id={styles.secInfo}>
+          <p>
+            <br />
+            Second, please click below to be directed to Snyk's website to grant permission to the tool to run in your terminal.
           </p>
         </div>
         <br />
         <Button variant='contained' type='button' id={styles.secTestBtn} onClick={snykAuth}>
-          Authenticate Snyk
+          Authenticate
         </Button>
         <br />
         <br />

@@ -96,6 +96,11 @@ export function useGenerateScript(test, testType = null, puppeteerUrl = 'sample.
         cd: `cd ${projectFilePath}`,
         install: 'npm i -D puppeteer',
       };
+    case 'sec':
+      return {
+        cd: `cd ${projectFilePath}`,
+        install: 'npm i -D snyk'
+      }
     default:
       return '';
     // code block
