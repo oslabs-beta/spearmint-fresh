@@ -30,7 +30,7 @@ const ReduxTestMenu = () => {
     ReduxTestCaseContext
   );
   const { title, isModalOpen, openModal, openScriptModal, closeModal } = useToggleModal('redux');
-  const [{ projectFilePath, file, exportBool, isTestModalOpen }, dispatchToGlobal] = useContext<any>(GlobalContext);
+  const [{ projectFilePath, file, exportBool, isTestModalOpen, isGuest }, dispatchToGlobal] = useContext<any>(GlobalContext);
   const generateTest = useGenerateTest('redux', projectFilePath);
   // Redux testing docs url
   const reduxUrl = 'https://redux.js.org/recipes/writing-tests';
@@ -87,8 +87,14 @@ const ReduxTestMenu = () => {
           <button id={styles.example} onClick={openDocs}>
             Need Help?
           </button>
-          {/* <UploadTest testType='redux' />
-          <GetTests testType='redux' /> */}
+          {isGuest ? (
+            <div></div>
+          ) : (
+            <div>
+              <UploadTest testType="redux" />
+              <GetTests testType="redux" />
+            </div>
+          )}
           <Modal
             // passing methods down as props to be used when Modal is opened
             title={title}
