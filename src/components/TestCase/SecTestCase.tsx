@@ -124,8 +124,6 @@ const SecTestCase = () => {
         <Button variant='outlined' type='button' id={styles.secTestBtn} onClick={applicationTest}>
           Test Application
         </Button>
-        <br />
-        <br />
       </section>
     </div>
   )
