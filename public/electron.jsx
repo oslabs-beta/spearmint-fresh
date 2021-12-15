@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const np = require('node-pty');
 const os = require('os');
+const server = require('../server/server.js');
 // react developer tools for electron in dev mode 
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 // global bool to determine if in dev mode or not 
@@ -17,6 +18,7 @@ function createWindow(params) {
         width:1782,
         height:920,
         backgroundColor: "white",
+        icon: path.join(__dirname, 'icon.png'),
         webPreferences:{
             nodeIntegration: true, // changed to true from legacy to resolve an issue with OpenFolderButton
             worldSafeExecuteJavaScript: true,
@@ -59,7 +61,10 @@ if (isDev) {
 };
 
 // 
-if (os.platform() !== 'win32') require('fix-path')
+if (os.platform() !== 'win32') {
+    const fixPath = require('fix-path'); 
+    fixPath(); 
+}
 
 // Add react dev tools to electron app 
 if (isDev) {
