@@ -6,24 +6,10 @@ const os = require('os');
 // react developer tools for electron in dev mode 
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
 // global bool to determine if in dev mode or not 
-const isDev = true; 
+// const isDev = true; 
 
 //Dynamic variable to change terminal type based on os
 const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
-
-// Add react dev tools to electron app 
-if (isDev) {
-    app.whenReady().then(() => {
-        installExtension(REACT_DEVELOPER_TOOLS, {
-            loadExtensionOptions: {
-                allowFileAccess: true,
-            },
-        })
-            .then((name) => console.log(`Added Extension:  ${name}`))
-            .catch((err) => console.log('An error occurred: ', err));
-    });
-};
-
 
 // setup electron window 
 function createWindow(params) {
@@ -64,9 +50,27 @@ function createWindow(params) {
 }
 
 // not 100% sure what this is doing 
-require('electron-reload')(__dirname, {
-    electron: path.join(__dirname, '../node_modules', '.bin', 'electron')
-}); 
+const isDev = process.env.APP_DEV ? (process.env.APP_DEV.trim() == "true") : false;
+
+if (isDev) {
+    require('electron-reload')(__dirname, {
+        electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+    });
+};
+
+// Add react dev tools to electron app 
+if (isDev) {
+    app.whenReady().then(() => {
+        installExtension(REACT_DEVELOPER_TOOLS, {
+            loadExtensionOptions: {
+                allowFileAccess: true,
+            },
+        })
+            .then((name) => console.log(`Added Extension:  ${name}`))
+            .catch((err) => console.log('An error occurred: ', err));
+    });
+};
+
 
 /*
 UNIVERSAL IPC CALLS

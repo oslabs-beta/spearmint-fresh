@@ -1,15 +1,17 @@
 {
   "name": "spearmint-fresh",
   "version": "1.0.0",
-  "description": "",
+  "description": "An open-source developer tool that simplifies testing and hopes to help increase awareness about web accessibility.",
   "main": "public/electron.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"electron .\" \"nodemon server/server.js\"",
-    "watch": "webpack --config webpack.config.ts --watch"
+    "start": "APP_DEV=true electron .",
+    "watch": "webpack --config webpack.config.ts --watch",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "keywords": [],
-  "author": "",
+  "author": "team spearmint",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.15.0",
@@ -28,8 +30,8 @@
     "cookie-parser": "^1.4.6",
     "css-loader": "^6.2.0",
     "dotenv": "^10.0.0",
-    "electron": "^13.1.9",
     "electron-devtools-installer": "^3.2.0",
+    "electron-squirrel-startup": "^1.0.0",
     "express": "^4.17.1",
     "js-beautify": "^1.14.0",
     "mongoose": "^6.0.14",
@@ -52,8 +54,14 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.15.0",
+    "@electron-forge/cli": "^6.0.0-beta.61",
+    "@electron-forge/maker-deb": "^6.0.0-beta.61",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+    "@electron-forge/maker-zip": "^6.0.0-beta.61",
     "@types/webpack-dev-server": "^3.11.5",
     "@typescript-eslint/parser": "^5.6.0",
+    "electron": "^13.6.3",
     "electron-rebuild": "^3.2.5",
     "electron-reload": "^2.0.0-alpha.1",
     "eslint-plugin-import": "^2.25.3",
@@ -61,5 +69,32 @@
     "ts-node": "^10.2.0",
     "typescript": "^4.3.5",
     "webpack-dev-server": "^3.11.2"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "spearmint_fresh"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }
