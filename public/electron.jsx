@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const np = require('node-pty');
 const os = require('os');
+
 const server = require('../server/server.js');
 // react developer tools for electron in dev mode 
 const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer');
