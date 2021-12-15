@@ -29,7 +29,7 @@ const PuppeteerTestMenu = () => {
   const { title, isModalOpen, openModal, openScriptModal, closeModal } = useToggleModal(
     'puppeteer'
   );
-  const [{ projectFilePath, file, exportBool, isTestModalOpen }, dispatchToGlobal] = useContext<any>(GlobalContext);
+  const [{ projectFilePath, file, exportBool, isTestModalOpen, isGuest }, dispatchToGlobal] = useContext<any>(GlobalContext);
   const generateTest = useGenerateTest('puppeteer', projectFilePath);
 
   useEffect(() => {
@@ -75,8 +75,14 @@ const PuppeteerTestMenu = () => {
           <button id={styles.example} onClick={openDocs}>
             Need Help?
           </button>
-          {/* <UploadTest testType="puppeteer" />
-          <GetTests testType="puppeteer" /> */}
+          {isGuest ? (
+            <div></div>
+          ) : (
+            <div>
+              <UploadTest testType="puppeteer" />
+              <GetTests testType="puppeteer" />
+            </div>
+          )}
           <Modal
             // passing methods down as props to be used when Modal is opened
             title={title}

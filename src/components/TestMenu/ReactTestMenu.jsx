@@ -17,18 +17,17 @@ import {
 } from '../../context/actions/globalActions';
 import { ReactTestCaseContext } from '../../context/reducers/reactTestCaseReducer';
 import { useToggleModal } from './testMenuHooks';
-// import UploadTest from '../UploadTest/UploadTest';
-// import GetTests from '../GetTests/GetTests';
+import UploadTest from '../UploadTest/UploadTest';
+import GetTests from '../GetTests/GetTests';
 
 const ReactTestMenu = () => {
   // React testing docs url
   const reactUrl = 'https://testing-library.com/docs/react-testing-library/example-intro';
 
-  // const [isModalOpen, setIsModalOpen] = useState(false);
   const { title, isModalOpen, openModal, openScriptModal, closeModal } = useToggleModal('react');
   const [{ mockData }, dispatchToMockData] = useContext(MockDataContext);
   const [reactTestCase, dispatchToReactTestCase] = useContext(ReactTestCaseContext);
-  const [{ projectFilePath, file, exportBool, isTestModalOpen }, dispatchToGlobal] =
+  const [{ projectFilePath, file, exportBool, isTestModalOpen, isGuest }, dispatchToGlobal] =
     useContext(GlobalContext);
   const generateTest = useGenerateTest('react', projectFilePath);
 
@@ -71,8 +70,14 @@ const ReactTestMenu = () => {
           <button id={styles.example} onClick={openDocs}>
             Need Help?
           </button>
-          {/* <UploadTest testType='react' />
-          <GetTests testType='react' /> */}
+          {isGuest ? (
+            <div></div>
+          ) : (
+            <div>
+              <UploadTest testType="react" />
+              <GetTests testType="react" />
+            </div>
+          )}
           <Modal
             title={title}
             isModalOpen={isModalOpen}

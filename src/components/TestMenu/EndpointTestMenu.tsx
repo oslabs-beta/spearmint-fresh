@@ -22,14 +22,14 @@ import {
 import useGenerateTest from '../../context/useGenerateTest';
 import { EndpointTestCaseContext } from '../../context/reducers/endpointTestCaseReducer';
 import { useToggleModal, validateInputs } from './testMenuHooks';
-// import UploadTest from '../UploadTest/UploadTest';
-// import GetTests from '../GetTests/GetTests';
+import UploadTest from '../UploadTest/UploadTest';
+import GetTests from '../GetTests/GetTests';
 
 // child component of EndPointTest menu. has NewTest and Endpoint buttons
 const EndpointTestMenu = () => {
   const [endpointTestCase, dispatchToEndpointTestCase] = useContext(EndpointTestCaseContext);
 
-  const [{ projectFilePath, file, exportBool, isTestModalOpen }, dispatchToGlobal] = useContext<any>(GlobalContext);
+  const [{ projectFilePath, file, exportBool, isTestModalOpen, isGuest }, dispatchToGlobal] = useContext<any>(GlobalContext);
   const { title, isModalOpen, openModal, openScriptModal, closeModal } = useToggleModal('endpoint');
   const generateTest = useGenerateTest('endpoint', projectFilePath);
   // Endpoint testing docs url
@@ -91,8 +91,14 @@ const EndpointTestMenu = () => {
           <button id={styles.example} onClick={openDocs}>
             Need Help?
           </button>
-          {/* <UploadTest testType="endpoint test" />
-          <GetTests testType="endpoint test" /> */}
+          {isGuest ? (
+            <div></div>
+          ) : (
+            <div>
+              <UploadTest testType="endpoint test" />
+              <GetTests testType="endpoint test" />
+            </div>
+          )}
           <Modal
             // passing methods down as props to be used when TestModal is opened
             title={title}
