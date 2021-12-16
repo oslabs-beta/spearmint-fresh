@@ -95,7 +95,7 @@ Users can now test their application for vulnerabilities including: SQL Injectio
 ![](/public/demos/endpoint.gif)
 
 ### Run a specific test 
-![](/public/runTest.gif)
+![](/public/runTest.png)
 
 <br>
 
