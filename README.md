@@ -92,10 +92,10 @@ Users can now test their application for vulnerabilities including: SQL Injectio
 ![](/public/demos/snyk-fixdep.gif)
 
 ### Generate endpoint test
-![](/public/demos/snyk-auth-testdep.gif)
+![](/public/demos/endpoint.gif)
 
 ### Run a specific test 
-![](/public/demos/snyk-auth-testdep.gif)
+![](/public/runTest.gif)
 
 <br>
 
