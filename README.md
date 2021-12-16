@@ -3,7 +3,7 @@
 Spearmint helps developers easily create functional React/Redux/Endpoint/Paint Timing tests without writing any code. It dynamically converts user inputs into executable Jest test code by using DOM query selectors provided by @testing-library.
 
 # Installation 
-Please download spearmint from our [website](https://www.spearmintjs.com/). Available for Mac OS, Windows and Linux.
+Please download spearmint from our [website](https://www.spearmintjs.com/). Available for Mac OS and Windows.
 
 
 # How to use in development mode
@@ -20,7 +20,7 @@ First install
 
 ***
 
-### For Windows + Linux developers
+### For Windows developers
         
 **Prerequisite**: Install Node.js globally 
     
@@ -67,7 +67,7 @@ Users can now test their application for vulnerabilities including: SQL Injectio
 
 -Guest Login
 
--Cross-platform functionality (Mac OS w/ M1 chip, Mac OS w/ Intel chip, Windows, Linux)
+-Cross-platform functionality (Mac OS w/ M1 chip, Mac OS w/ Intel chip, Windows)
 
 -60% reduced package size 
 
