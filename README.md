@@ -104,10 +104,10 @@ Users can now test their application for vulnerabilities including: SQL Injectio
 
 
 ### Authenticate Snyk 
-![](/public/snyk-auth-testdep.gif)
+![](/public/demos/snyk-auth-testdep.gif)
 
 ### Enable Snyk code
-![](/public/snyk-enable.gif)
+![](/public/demos/snyk-enable.gif)
 
 # The Spearmint Team
 <hr>
