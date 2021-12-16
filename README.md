@@ -14,22 +14,22 @@ Please download spearmint from our [website](https://www.spearmintjs.com/). Avai
 
 First install
 1. Fork and clone this repository.
-2. ```npm run install-once```
-3. ```npm run start```
+2. ```npm install```
+3. ```npm run watch```
+3. ```npm run start-dev```
 
 ***
 
-### For Windows developers
-
-**Prerequisite**: Install Python and Microsoft C++ Build Tools.
-
-In an Administrator PowerShell run the following commands: <br />
-```choco install python visualcpp-build-tools -y``` <br />
-```npm config set msvs_version 2017```
+### For Windows + Linux developers
         
+**Prerequisite**: Install Node.js globally 
+    
 1. Fork and clone this repository.
-2. ```npm run install-once```
-3. ```npm run start-windows```
+2. ```npm install```
+3. ```npm run watch```
+3. ```npm run start-dev```
+
+Note: Windows users may also have to run Spearmint in admin mode
 
 
 <br>
@@ -53,10 +53,12 @@ In an Administrator PowerShell run the following commands: <br />
 ![](/public/runTest.png) 
 
 5.  An accessibility lens has been added in the app to give developers with different mismatches various options to interact with the app. 
+
 ![](/public/AccLens_Demo.gif)
 
 6. The latest version of Spearmint has a specific focus on security. The [Snyk](https://snyk.io/) library has been utilized to ensure your application is up to snuff for various security standards and protect your application from malicious attacks. 
 Users can now test their application for vulnerabilities including: SQL Injection, Cross-site Scripting (XSS), Hardcoded Secrets, and much more! 
+
 ![](/public/demos/snyk-test-app.gif)
 
 # New features with version 0.8.0
@@ -67,17 +69,45 @@ Users can now test their application for vulnerabilities including: SQL Injectio
 
 -Cross-platform functionality (Mac OS w/ M1 chip, Mac OS w/ Intel chip, Windows, Linux)
 
+-60% reduced package size 
+
+-Accelerated startup time
+
 -Ample bug fixes
 
 <br>
 
-
 # Demos
 
-### Run a specific test 
-![](/public/inapp-test-demo-run-test.gif)
+### Guest login
+![](/public/guest-login.gif)
 
-***
+### Signup + login 
+![](/public/signup-login.gif)
+
+### Snyk auth + dependency test
+![](/public/snyk-auth-testdep.gif)
+
+### Snyk fix dependencies
+![](/public/snyk-fixdep.gif)
+
+### Generate endpoint test
+![](/public/snyk-auth-testdep.gif)
+
+### Run a specific test 
+![](/public/snyk-auth-testdep.gif)
+
+<br>
+
+
+# Snyk Setup  
+
+
+### Authenticate Snyk 
+![](/public/snyk-auth-testdep.gif)
+
+### Enable Snyk code
+![](/public/snyk-enable.gif)
 
 # The Spearmint Team
 <hr>
@@ -120,4 +150,10 @@ Users can now test their application for vulnerabilities including: SQL Injectio
 > Tyler [@tytyjameson](https://github.com/tytyjameson)
 <hr>
 
+***
+
 # If You Want To Contribute: 
+The following is a list of features + improvements for future open-source developers that the Spearmint team has either started or would like to see implemented. Or, if you have additional new ideas, feel free to implement those as well! 
+- Vue test generation 
+- Github OAuth login (was available in previous versions, but the components used became deprecated)
+- Additional security testing functionality 
