@@ -3,7 +3,7 @@ import webpack from "webpack";
 
 const config: webpack.Configuration = {
   mode: 'development',
-  entry: "./src/index.tsx",
+  entry: "./src/index.js",
   devtool: 'inline-source-map',
   target: 'electron-renderer',
   module: {
@@ -32,11 +32,15 @@ const config: webpack.Configuration = {
           // Compiles Sass to CSS
           'sass-loader',
         ],
-      }
+      }, 
+      {
+        test: [/\.png/, /\.svg/],
+       type: 'asset/resource'
+     }
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".jsx", ".ts", ".js"],
   },
   output: {
     path: path.resolve(__dirname, "build"),
